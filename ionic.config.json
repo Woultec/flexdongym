@@ -1,0 +1,8 @@
+{
+  "name": "FlexDonGym",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "761d8a27"
+}
