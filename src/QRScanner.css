@@ -1,0 +1,18 @@
+.scanner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.scanner-container h1 {
+  margin-bottom: 20px;
+}
+
+.scanner-container p {
+  margin: 10px 0;
+}
+
+.scanner-container button {
+  margin-top: 10px;
+}
