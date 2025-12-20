@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import QRScanner from "./QRScanner";
 import { QRCode } from "react-qr-code";
 import "./App.css";
 
@@ -40,9 +39,10 @@ const QRGenerator = () => {
         </div>
       )}
 
-      <button style={{ marginTop: "20px" }} onClick={() => history.push("/scanner")}>
-        Go to QR Scanner
+      <button style={{ marginTop: "20px" }} onClick={() => navigate("/generator")}>
+        Back to Generator
       </button>
+
     </div>
   );
 };
@@ -51,7 +51,6 @@ const App = () => {
   return (
     <Switch>
       <Route path="/generator" component={QRGenerator} />
-      <Route path="/scanner" component={QRScanner} />
       <Redirect to="/generator" />
     </Switch>
   );
