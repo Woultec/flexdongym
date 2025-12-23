@@ -204,4 +204,83 @@ describe("QR Generator - Additional Tests", () => {
     expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
     expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
   });
+
+  test("does not generate QR if first name is empty", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Doe" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "25" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("does not generate QR if last name is empty", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "John" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "25" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("does not generate QR if age is empty", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "John" } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Doe" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("does not generate QR if age is negative", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "John" } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Doe" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "-5" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("does not generate QR if age is zero", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "John" } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Doe" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "0" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Complete All Fields");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("generates QR for valid names and age", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "Alice" } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Johnson" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "40" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    const expectedValue = "000001DonGymAliceJohnson40";
+    expect(screen.getByTestId("qr")).toHaveTextContent(expectedValue);
+    expect(screen.getByText("Generated Code:")).toBeInTheDocument();
+  });
+
+  test("trims whitespace from inputs before generating QR", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "  Bob " } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: " Smith " } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "22" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    expect(window.alert).toHaveBeenCalledWith("Invalid input, try again");
+    expect(screen.queryByText("Generated Code:")).not.toBeInTheDocument();
+  });
+
+  test("generates QR with numeric names allowed", () => {
+    render(<MemoryRouter><App /></MemoryRouter>);
+    fireEvent.change(screen.getByPlaceholderText("First Name"), { target: { value: "User123" } });
+    fireEvent.change(screen.getByPlaceholderText("Last Name"), { target: { value: "Test456" } });
+    fireEvent.change(screen.getByPlaceholderText("Age"), { target: { value: "33" } });
+    fireEvent.click(screen.getByText("Generate QR Code"));
+    const expectedValue = "000001DonGymUser123Test45633";
+    expect(screen.getByTestId("qr")).toHaveTextContent(expectedValue);
+  });
+
 });

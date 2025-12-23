@@ -13,8 +13,20 @@ const QRGenerator = () => {
   const history = useHistory();
 
   const generateQrCodeHandler = () => {
+    // Check for empty fields or invalid age
     if (!firstName || !lastName || !age || Number(age) <= 0) {
       alert("Complete All Fields");
+      return;
+    }
+
+    // Check for whitespace-only or spaces in inputs
+    if (
+      firstName.trim() === "" ||
+      lastName.trim() === "" ||
+      firstName.includes(" ") ||
+      lastName.includes(" ")
+    ) {
+      alert("Invalid input, try again");
       return;
     }
     const formatted = `000001DonGym${firstName}${lastName}${age}`;
