@@ -13,7 +13,7 @@ const QRGenerator = () => {
   const history = useHistory();
 
   const generateQrCodeHandler = () => {
-    if (!firstName || !lastName || !age) {
+    if (!firstName || !lastName || !age || Number(age) <= 0) {
       alert("Complete All Fields");
       return;
     }
