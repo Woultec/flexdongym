@@ -10,6 +10,8 @@ import LoginRegister from "./pages/EmployeePage/LoginRegister";
 import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
+import QRScannerHome from "./pages/EmployeePage/QRScanner";
+import MemberStatusPage from "./pages/EmployeePage/MemberStatus";
 
 const MainApp: React.FC = () => (
   <IonApp>
@@ -29,6 +31,8 @@ const MainApp: React.FC = () => (
             <Route path="/member" element={<MemberMenu />} />
             <Route path="/walkin" element={<WalkInMenu />} />
             <Route path="/prepaid" element={<PrepaidMenu />} />
+            <Route path="/qr" element={<QRScannerHome />} />
+            <Route path="/memberstatus" element={<MemberStatusPage />} />
             <Route path="/menu" element={<Menu />} />
           </Routes>
         </IonRouterOutlet>

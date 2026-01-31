@@ -13,6 +13,8 @@ import MenuButtons from "./pages/EmployeePage/Menu";
 import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
+import QRScannerHome from "./pages/EmployeePage/QRScanner";
+import MemberStatusPage from "./pages/EmployeePage/MemberStatus";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -59,6 +61,8 @@ const App: React.FC = () => {
             <Route path="/member" element={<MemberMenu />} />
             <Route path="/walkin" element={<WalkInMenu />} />
             <Route path="/prepaid" element={<PrepaidMenu />} />
+            <Route path="/qr" element={<QRScannerHome />} />
+            <Route path="/memberstatus" element={<MemberStatusPage />} />
             <Route path="/folder/:name" element={<Page />} />
           </IonRouterOutlet>
         </IonSplitPane>

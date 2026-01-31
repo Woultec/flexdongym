@@ -7,6 +7,7 @@ import MenuButtons from "./pages/EmployeePage/Menu";
 import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
+import QRScannerHome from "./pages/EmployeePage/QRScanner";
 
 const QRGenerator = () => {
   const [firstName, setFirstName] = useState("");
@@ -83,7 +84,7 @@ const QRGenerator = () => {
       <button style={{ marginTop: "20px" }} onClick={() => navigate("/login")}>
         Login
       </button>
-      <button style={{ marginTop: "20px" }} onClick={() => navigate("/pos")}>
+      <button style={{ marginTop: "20px" }} onClick={() => navigate("/qr")}>
         POS
       </button>
     </div>
@@ -100,6 +101,7 @@ const App = () => {
       <Route path="/member" element={<MemberMenu />} />
       <Route path="/walkin" element={<WalkInMenu />} />
       <Route path="/prepaid" element={<PrepaidMenu />} />
+      <Route path="/qr" element={<QRScannerHome />} />
     </Routes>
   );
 };
