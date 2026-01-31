@@ -1,9 +1,11 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+// capacitor.config.ts
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'FlexDonGym',
-  webDir: 'dist'
+  appId: "your.app.id",
+  appName: "YourAppName",
+  webDir: "build",
+  bundledWebRuntime: false,
 };
 
 export default config;
