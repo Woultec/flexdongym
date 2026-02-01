@@ -1,15 +1,20 @@
+export type QrResult = {
+  error?: string;
+  value?: string;
+};
+
 export function generateQrValue(
   firstName: string,
   lastName: string,
   age: string
-): { error?: string; value?: string } {
-  if (!firstName || !lastName || !age || Number(age) <= 0) {
+): QrResult {
+  if (!firstName || !lastName || Number(age) <= 0) {
     return { error: "Complete All Fields" };
   }
 
   if (
-    firstName.trim() === "" ||
-    lastName.trim() === "" ||
+    !firstName.trim() ||
+    !lastName.trim() ||
     firstName.includes(" ") ||
     lastName.includes(" ")
   ) {
