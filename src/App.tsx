@@ -9,13 +9,13 @@ import { Route, Redirect } from "react-router-dom";
 
 import Menu from "./components/Menu";
 import Page from "./pages/Page";
-/*import LoginRegister from "./pages/EmployeePage/LoginRegister";
+import LoginRegister from "./pages/EmployeePage/LoginRegister";
 import MenuButtons from "./pages/EmployeePage/Menu";
 import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
 import QRScannerHome from "./pages/EmployeePage/QRScanner";
-import MemberStatusPage from "./pages/EmployeePage/MemberStatus";*/
+import MemberStatusPage from "./pages/EmployeePage/MemberStatus";
 
 /* Ionic CSS */
 import "@ionic/react/css/core.css";
@@ -46,14 +46,14 @@ const App: React.FC = () => {
               <Redirect to="/login" />
             </Route>
 
-            {/* Routes 
+            {/* Routes */}
             <Route exact path="/login" component={LoginRegister} />
             <Route exact path="/menu" component={MenuButtons} />
             <Route exact path="/member" component={MemberMenu} />
             <Route exact path="/walkin" component={WalkInMenu} />
             <Route exact path="/prepaid" component={PrepaidMenu} />
             <Route exact path="/qr" component={QRScannerHome} />
-            <Route exact path="/memberstatus" component={MemberStatusPage} />*/}
+            <Route exact path="/memberstatus" component={MemberStatusPage} />
             <Route path="/folder/:name" component={Page} />
           </IonRouterOutlet>
         </IonSplitPane>
