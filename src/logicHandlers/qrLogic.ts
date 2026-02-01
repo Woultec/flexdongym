@@ -25,3 +25,7 @@ export function generateQrValue(
     value: `000001DonGym${firstName}${lastName}${age}`,
   };
 }
+
+// your existing logic here
+
+export {};
