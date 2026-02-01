@@ -8,7 +8,9 @@ export function generateQrValue(
   lastName: string,
   age: string
 ): QrResult {
-  if (!firstName || !lastName || Number(age) <= 0) {
+  const parsedAge = Number(age);
+
+  if (!firstName || !lastName || isNaN(parsedAge) || parsedAge <= 0) {
     return { error: "Complete All Fields" };
   }
 
@@ -25,7 +27,3 @@ export function generateQrValue(
     value: `000001DonGym${firstName}${lastName}${age}`,
   };
 }
-
-// your existing logic here
-
-export {};
