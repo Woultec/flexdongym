@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import { QRCode } from "react-qr-code";
+import { generateQrValue } from "./logicHandlers/qrLogic";
+
 import "./App.css";
 
 const QRGenerator = () => {
@@ -13,26 +15,17 @@ const QRGenerator = () => {
   const history = useHistory();
 
   const generateQrCodeHandler = () => {
-    // Check for empty fields or invalid age
-    if (!firstName || !lastName || !age || Number(age) <= 0) {
-      alert("Complete All Fields");
+  const result = generateQrValue(firstName, lastName, age);
+
+    if (result.error) {
+      alert(result.error);
       return;
     }
 
-    // Check for whitespace-only or spaces in inputs
-    if (
-      firstName.trim() === "" ||
-      lastName.trim() === "" ||
-      firstName.includes(" ") ||
-      lastName.includes(" ")
-    ) {
-      alert("Invalid input, try again");
-      return;
-    }
-    const formatted = `000001DonGym${firstName}${lastName}${age}`;
-    setQrValue(formatted);
+    setQrValue(result.value);
     setVisible(true);
   };
+
 
   return (
     <div className="container">
@@ -51,7 +44,7 @@ const QRGenerator = () => {
         </div>
       )}
 
-      <button style={{ marginTop: "20px" }} onClick={() => navigate("/generator")}>
+      <button style={{ marginTop: "20px" }} onClick={() => history.push("/generator")}>
         Back to Generator
       </button>
 
