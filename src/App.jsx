@@ -9,6 +9,11 @@ import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
 import QRScannerHome from "./pages/EmployeePage/QRScanner";
+import ManageMember from "./pages/EmployeePage/ManageMember";
+import StartingPageAdmin from "./pages/AdminPage/StartingPage";
+import EmployeeMenu from "./pages/AdminPage/Employee";
+import AdminMenu from "./pages/AdminPage/Admin";
+import MenuAdminButtons from "./pages/AdminPage/MenuAdmin";
 
 const QRGenerator = () => {
   const [firstName, setFirstName] = useState("");
@@ -91,6 +96,12 @@ const QRGenerator = () => {
       <button style={{ marginTop: "20px" }} onClick={() => history.push("/qr")}>
         POS
       </button>
+      <button
+        style={{ marginTop: "20px" }}
+        onClick={() => history.push("/admin-page")}
+      >
+        Admin Page
+      </button>
     </div>
   );
 };
@@ -98,17 +109,20 @@ const QRGenerator = () => {
 const App = () => {
   return (
     <>
-      <Route exact path="/">
-        <Redirect to="/generator" />
-      </Route>
+      <Route path="/generator" component={QRGenerator} />
+      <Redirect to="/generator" />
 
-      <Route exact path="/generator" component={QRGenerator} />
       <Route exact path="/login" component={LoginRegister} />
       <Route exact path="/menu" component={MenuButtons} />
       <Route exact path="/member" component={MemberMenu} />
       <Route exact path="/walkin" component={WalkInMenu} />
       <Route exact path="/prepaid" component={PrepaidMenu} />
       <Route exact path="/qr" component={QRScannerHome} />
+      <Route exact path="/manage-member" component={ManageMember} />
+      <Route exact path="/admin-page" component={StartingPageAdmin} />
+      <Route exact path="/employee" component={EmployeeMenu} />
+      <Route exact path="/admin" component={AdminMenu} />
+      <Route exact path="/menu-admin" component={MenuAdminButtons} />
     </>
   );
 };

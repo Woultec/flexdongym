@@ -11,12 +11,10 @@ interface Member {
   avatar?: string;
 }
 
-const MemberStatusMenu: React.FC = () => {
+const ManageMemberMenu: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
-
-  // Sample member data
-  const [members] = useState<Member[]>([
+  const [members, setMembers] = useState<Member[]>([
     {
       id: 1,
       name: "Alex Johnson",
@@ -98,6 +96,15 @@ const MemberStatusMenu: React.FC = () => {
       .toUpperCase();
   };
 
+  const handleDelete = (id: number) => {
+    setMembers(members.filter((member) => member.id !== id));
+  };
+
+  const handleEdit = (id: number) => {
+    console.log("Edit member:", id);
+    // Add edit logic here
+  };
+
   return (
     <div className="status-main-container">
       <div className="status-header">
@@ -158,8 +165,18 @@ const MemberStatusMenu: React.FC = () => {
                 </div>
               </div>
               <div className="card-footer">
-                <button className="btn-secondary">View Profile</button>
-                <button className="btn-primary">Edit</button>
+                <button
+                  className="btn-primary"
+                  onClick={() => handleEdit(member.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn-secondary"
+                  onClick={() => handleDelete(member.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))
@@ -169,4 +186,4 @@ const MemberStatusMenu: React.FC = () => {
   );
 };
 
-export default MemberStatusMenu;
+export default ManageMemberMenu;

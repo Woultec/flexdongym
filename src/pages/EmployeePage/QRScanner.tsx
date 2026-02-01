@@ -29,7 +29,9 @@ const QRScannerHome: React.FC = () => {
               <h3>QR Scanner</h3>
             </div>
             <div className="status-container">
-              <h3>Status</h3>
+              <h3 onClick={() => history.push("/manage-status")}>
+                Manage Member
+              </h3>
             </div>
           </div>
         </div>
