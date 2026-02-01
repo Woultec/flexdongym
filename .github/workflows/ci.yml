@@ -3,22 +3,22 @@ name: Ionic React CI
 on:
   push:
     branches:
-      new-main
-      1devAsan/fullstack
-      staging-branch
-      1testFabiana/tester
-      1testDoria/tester
-      1devWoulter/frontend
-      1devVelasco/frontend
+      - new-main
+      - 1devAsan/fullstack
+      - staging-branch
+      - 1testFabiana/tester
+      - 1testDoria/tester
+      - 1devWoulter/frontend
+      - 1devVelasco/frontend
   pull_request:
     branches:
-      new-main
-      1devAsan/fullstack
-      staging-branch
-      1testFabiana/tester
-      1testDoria/tester
-      1devWoulter/frontend
-      1devVelasco/frontend
+      - new-main
+      - 1devAsan/fullstack
+      - staging-branch
+      - 1testFabiana/tester
+      - 1testDoria/tester
+      - 1devWoulter/frontend
+      - 1devVelasco/frontend
 
 jobs:
   build:
