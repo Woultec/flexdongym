@@ -21,17 +21,15 @@ const QRScannerHome: React.FC = () => {
               ADD NEW MEMBER
             </Button>
           </div>
-          <div className="pos-nav-container">
+          <div className="qr pos-nav-container">
             <div className="pos-container">
               <h3>POS</h3>
             </div>
-            <div className="qr-container">
-              <h3>QR Scanner</h3>
+            <div className="qr qr-container">
+              <h3 onClick={() => history.push("/")}>QR Scanner</h3>
             </div>
-            <div className="status-container">
-              <h3 onClick={() => history.push("/manage-status")}>
-                Manage Member
-              </h3>
+            <div className="qr status-container">
+              <h3 onClick={() => history.push("/status-member")}>Status</h3>
             </div>
           </div>
         </div>

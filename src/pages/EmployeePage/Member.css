@@ -55,5 +55,4 @@ h1 {
 .input-username,
 input:focus {
   outline: none;
-  width: 100%;
 }

@@ -29,11 +29,11 @@ const StartingPageAdmin: React.FC = () => {
   return (
     <div className="admin-login-container">
       <div className="admin-main-container">
-        <div className="image-group">
+        <div className="admin-image-group">
           <img src="/dondon-logo.png" className="dondon-logo" alt="Logo" />
-          <h1 className="gym-name">DONDON'S FITNESS GYM</h1>
+          <h1 className="admin-gym-name">DONDON'S FITNESS GYM</h1>
         </div>
-        <div className="button-group">
+        <div className="admin-button-group">
           <Button
             className="btn btn-signup"
             type="submit"

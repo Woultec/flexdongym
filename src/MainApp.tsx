@@ -12,12 +12,12 @@ import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
 import QRScannerHome from "./pages/EmployeePage/QRScanner";
-import MemberStatusMenu from "./pages/EmployeePage/MemberStatus";
-import ManageMemberMenu from "./pages/EmployeePage/ManageMember";
 import StartingPageAdmin from "./pages/AdminPage/StartingPage";
 import EmployeeMenu from "./pages/AdminPage/Employee";
 import AdminMenu from "./pages/AdminPage/Admin";
 import MenuAdminButtons from "./pages/AdminPage/MenuAdmin";
+import StatusMemberPage from "./pages/EmployeePage/StatusMember";
+import ProfileMemberPage from "./pages/EmployeePage/ProfileMember";
 
 const MainApp: React.FC = () => (
   <IonApp>
@@ -39,12 +39,12 @@ const MainApp: React.FC = () => (
             <Route exact path="/walkin" component={WalkInMenu} />
             <Route exact path="/prepaid" component={PrepaidMenu} />
             <Route exact path="/qr" component={QRScannerHome} />
-            <Route exact path="/member-status" component={MemberStatusMenu} />
-            <Route exact path="/manage-member" component={ManageMemberMenu} />
             <Route exact path="/admin-page" component={StartingPageAdmin} />
             <Route exact path="/employee" component={EmployeeMenu} />
             <Route exact path="/admin" component={AdminMenu} />
             <Route exact path="/menu-admin" component={MenuAdminButtons} />
+            <Route exact path="/status-member" component={StatusMemberPage} />
+            <Route exact path="/status-member" component={ProfileMemberPage} />
 
             {/* QR Generator */}
             <Route exact path="/generator" component={App} />
