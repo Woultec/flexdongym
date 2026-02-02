@@ -43,6 +43,7 @@ const QRGenerator = () => {
     setVisible(true);
   };
 
+
   return (
     <div className="container">
       <h1>Gym QR Code Generator 💪🏋️‍♂️</h1>
