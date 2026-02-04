@@ -67,7 +67,7 @@ const QRGenerator = () => {
         onChange={(e) => setAge(e.target.value)}
       />
 
-      <button onClick={generateQrCodeHandler}>Generate QR Code</button>
+      <button onClick={generateQrCodeHandler}>Generate QR</button>
 
       {qrVisible && (
         <div className="qr-code-container">
