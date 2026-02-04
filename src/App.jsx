@@ -67,11 +67,11 @@ const QRGenerator = () => {
         onChange={(e) => setAge(e.target.value)}
       />
 
-      <button onClick={generateQrCodeHandler}>Generate QR</button>
+      <button onClick={generateQrCodeHandler}>Generate QR Code</button>
 
       {qrVisible && (
         <div className="qr-code-container">
-          <QRCode value={qrValue} size={300} />
+          <QRCode value={qrValue} size={300} /> 
           <p>
             Generated Code: <b>{qrValue}</b>
           </p>
@@ -82,7 +82,7 @@ const QRGenerator = () => {
         style={{ marginTop: "20px" }}
         onClick={() => history.push("/generator")}
       >
-        Back to Generator
+        Back to GeneratorZxzxXx
       </button>
 
       <button
