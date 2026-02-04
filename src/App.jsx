@@ -82,7 +82,7 @@ const QRGenerator = () => {
         style={{ marginTop: "20px" }}
         onClick={() => history.push("/generator")}
       >
-        Back to GeneratorZxzxXx
+        Back to Generator
       </button>
 
       <button
