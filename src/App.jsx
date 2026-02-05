@@ -12,6 +12,7 @@ import QRScannerHome from "./pages/EmployeePage/QRScanner";
 import StartingPageAdmin from "./pages/AdminPage/StartingPage";
 import StatusMemberPage from "./pages/EmployeePage/StatusMember";
 import AdminMenu from "./pages/AdminPage/Admin";
+import DashboardPage from "./pages/AdminPage/dashboard";
 
 const QRGenerator = () => {
   const [firstName, setFirstName] = useState("");
@@ -101,6 +102,12 @@ const QRGenerator = () => {
       >
         Status
       </button>
+      <button
+        style={{ marginTop: "20px" }}
+        onClick={() => history.push("/dashboard")}
+      >            
+        Dashboard 
+      </button>
     </div>
   );
 };
@@ -119,6 +126,9 @@ const App = () => {
       <Route exact path="/qr" component={QRScannerHome} />
       <Route exact path="/admin-page" component={StartingPageAdmin} />
       <Route exact path="/status-member" component={StatusMemberPage} />
+      <Route exact path="/admin-menu" component={AdminMenu} />
+      <Route exact path="/dashboard" component={DashboardPage} />
+      
     </>
   );
 };
