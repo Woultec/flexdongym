@@ -1,0 +1,5 @@
+- [x] Update menuItems to change pricing path to "/admin-page/priceedit"
+- [x] Remove activeTab state and MenuNavBar import
+- [x] Remove dashboardItems state and related interfaces
+- [x] Remove MenuNavBar from JSX and simplify content section to only show overview
+- [x] Remove unused functions like getStatusColor

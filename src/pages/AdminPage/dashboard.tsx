@@ -2,24 +2,21 @@ import React, { useState } from "react";
 import {
   IonIcon,
   IonContent,
-  IonHeader,
   IonPage,
-  IonToolbar,
 } from "@ionic/react";
 import {
-  menuOutline,
-  closeOutline,
   homeOutline,
   peopleOutline,
-  personOutline,
   cubeOutline,
   pricetagOutline,
   settingsOutline,
-  logOutOutline,
   statsChartOutline,
-  calendarOutline,
+  personOutline,
 } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import Header from "../../components/admincomponents/widgets/header";
+import SideNavBar from "../../components/admincomponents/widgets/sidenavbar";
+import Footer from "../../components/admincomponents/widgets/footer";
 import "./dashboard.css";
 
 interface DashboardStats {
@@ -47,20 +44,19 @@ interface MenuItem {
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
-  const [activeTab, setActiveTab] = useState<"overview" | "members" | "employees">("overview");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
 
   // Menu items configuration
   const menuItems: MenuItem[] = [
-    { id: "dashboard", label: "Dashboard", icon: homeOutline, path: "/admin-page" },
+    { id: "dashboard", label: "Dashboard", icon: homeOutline, path: "/dashboard" },
     { id: "members", label: "Members", icon: peopleOutline, path: "/admin-page/members" },
     { id: "employees", label: "Employees", icon: personOutline, path: "/admin-page/employees" },
     { id: "products", label: "Products", icon: cubeOutline, path: "/admin-page/products" },
     { id: "customers", label: "Customers", icon: statsChartOutline, path: "/admin-page/customers" },
     { id: "equipment", label: "Equipment", icon: settingsOutline, path: "/admin-page/equipment" },
-    { id: "pricing", label: "Price Edit", icon: pricetagOutline, path: "/admin-page/pricing" },
-    { id: "schedule", label: "Schedule", icon: calendarOutline, path: "/admin-page/schedule" },
+    { id: "pricing", label: "Price Edit", icon: pricetagOutline, path: "/admin-page/priceedit" },
+    { id: "profile", label: "Profile", icon: personOutline, path: "/admin-page/profile" },
   ];
 
   // Mock data - replace with API calls
@@ -71,47 +67,7 @@ const Dashboard: React.FC = () => {
     monthlyRevenue: 12500,
   });
 
-  const [dashboardItems] = useState<DashboardItem[]>([
-    {
-      id: 1,
-      name: "John Doe",
-      status: "active",
-      type: "member",
-      joinDate: "2024-01-15",
-      email: "john@example.com",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      status: "active",
-      type: "member",
-      joinDate: "2024-02-20",
-      email: "jane@example.com",
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      status: "inactive",
-      type: "member",
-      joinDate: "2023-12-10",
-      email: "mike@example.com",
-    },
-    {
-      id: 4,
-      name: "Sarah Wilson",
-      status: "active",
-      type: "employee",
-      email: "sarah@example.com",
-    },
-    {
-      id: 5,
-      name: "Alex Brown",
-      status: "active",
-      type: "member",
-      joinDate: "2024-01-22",
-      email: "alex@example.com",
-    },
-  ]);
+
 
   const handleNavigate = (path: string, itemId: string) => {
     setActiveMenuItem(itemId);
@@ -123,69 +79,21 @@ const Dashboard: React.FC = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const getStatusColor = (status: string): string => {
-    switch (status) {
-      case "active":
-        return "status-active";
-      case "inactive":
-        return "status-inactive";
-      case "pending":
-        return "status-pending";
-      default:
-        return "";
-    }
-  };
+
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar className="dashboard-toolbar">
-          <div className="toolbar-content">
-            <h1 className="dashboard-title">Admin Dashboard</h1>
-            <div className="toolbar-actions">
-              <div className="user-avatar">AD</div>
-            </div>
-            <button className="menu-toggle" onClick={toggleMenu}>
-              <IonIcon icon={menuOpen ? closeOutline : menuOutline} />
-            </button>
-          </div>
-        </IonToolbar>
-      </IonHeader>
+      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
 
       <IonContent>
         <div className="dashboard-layout">
-          {/* Sidebar Menu */}
-          <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
-            <div className="sidebar-header">
-              <div className="logo-container">
-                <div className="logo-icon">💪</div>
-                <span className="logo-text">Gym Admin</span>
-              </div>
-            </div>
-
-            <nav className="sidebar-nav">
-              {menuItems.map((item) => (
-                <button
-                  key={item.id}
-                  className={`nav-item ${activeMenuItem === item.id ? "active" : ""}`}
-                  onClick={() => handleNavigate(item.path, item.id)}
-                >
-                  <IonIcon icon={item.icon} className="nav-icon" />
-                  <span className="nav-label">{item.label}</span>
-                </button>
-              ))}
-            </nav>
-
-            <div className="sidebar-footer">
-              <button className="nav-item logout-btn">
-                <IonIcon icon={logOutOutline} className="nav-icon" />
-                <span className="nav-label">Logout</span>
-              </button>
-            </div>
-          </aside>
-
-          {/* Overlay for mobile */}
-          {menuOpen && <div className="sidebar-overlay" onClick={toggleMenu}></div>}
+          <SideNavBar
+            menuOpen={menuOpen}
+            activeMenuItem={activeMenuItem}
+            handleNavigate={handleNavigate}
+            menuItems={menuItems}
+            toggleMenu={toggleMenu}
+          />
 
           {/* Main Content */}
           <main className="dashboard-main">
@@ -246,143 +154,53 @@ const Dashboard: React.FC = () => {
                 </div>
               </div>
 
-              {/* Tabs */}
+              {/* Overview */}
               <div className="content-section">
-                <div className="dashboard-tabs">
-                  <button
-                    className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
-                    onClick={() => setActiveTab("overview")}
-                  >
-                    <IonIcon icon={homeOutline} />
-                    Overview
-                  </button>
-                  <button
-                    className={`tab-button ${activeTab === "members" ? "active" : ""}`}
-                    onClick={() => setActiveTab("members")}
-                  >
-                    <IonIcon icon={peopleOutline} />
-                    Recent Members
-                  </button>
-                  <button
-                    className={`tab-button ${activeTab === "employees" ? "active" : ""}`}
-                    onClick={() => setActiveTab("employees")}
-                  >
-                    <IonIcon icon={personOutline} />
-                    Team
-                  </button>
-                </div>
-
-                {/* Tab Content */}
-                <div className="tab-content">
-                  {activeTab === "overview" && (
-                    <div className="overview-section">
-                      <div className="metrics-grid">
-                        <div className="metric-card">
-                          <div className="metric-header">
-                            <h3>Gym Utilization</h3>
-                            <span className="metric-badge">Live</span>
-                          </div>
-                          <div className="metric-value">68%</div>
-                          <div className="metric-chart">
-                            <div className="progress-bar">
-                              <div className="progress-fill" style={{ width: "68%" }}></div>
-                            </div>
-                          </div>
-                          <p className="metric-description">Current capacity usage</p>
-                        </div>
-
-                        <div className="metric-card">
-                          <div className="metric-header">
-                            <h3>Avg. Daily Visits</h3>
-                          </div>
-                          <div className="metric-value">42</div>
-                          <div className="metric-trend">
-                            <span className="trend-up">↑ 15%</span> vs last week
-                          </div>
-                          <p className="metric-description">Check-ins per day</p>
-                        </div>
-
-                        <div className="metric-card">
-                          <div className="metric-header">
-                            <h3>Growth Rate</h3>
-                          </div>
-                          <div className="metric-value">+12%</div>
-                          <div className="metric-trend">
-                            <span className="trend-up">↑ 3%</span> from last month
-                          </div>
-                          <p className="metric-description">Membership growth this month</p>
+                <div className="overview-section">
+                  <div className="metrics-grid">
+                    <div className="metric-card">
+                      <div className="metric-header">
+                        <h3>Gym Utilization</h3>
+                        <span className="metric-badge">Live</span>
+                      </div>
+                      <div className="metric-value">68%</div>
+                      <div className="metric-chart">
+                        <div className="progress-bar">
+                          <div className="progress-fill" style={{ width: "68%" }}></div>
                         </div>
                       </div>
+                      <p className="metric-description">Current capacity usage</p>
                     </div>
-                  )}
 
-                  {activeTab === "members" && (
-                    <div className="list-section">
-                      <div className="section-header">
-                        <h2>Recent Members</h2>
-                        <button className="btn-primary-small">View All</button>
+                    <div className="metric-card">
+                      <div className="metric-header">
+                        <h3>Avg. Daily Visits</h3>
                       </div>
-                      <div className="items-list">
-                        {dashboardItems
-                          .filter((item) => item.type === "member")
-                          .map((item) => (
-                            <div key={item.id} className="list-item">
-                              <div className="item-avatar">
-                                {item.name.split(" ").map(n => n[0]).join("")}
-                              </div>
-                              <div className="item-info">
-                                <h4>{item.name}</h4>
-                                <p className="item-email">{item.email}</p>
-                                {item.joinDate && (
-                                  <p className="item-meta">
-                                    <IonIcon icon={calendarOutline} />
-                                    Joined {new Date(item.joinDate).toLocaleDateString()}
-                                  </p>
-                                )}
-                              </div>
-                              <span className={`status-badge ${getStatusColor(item.status)}`}>
-                                {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
-                              </span>
-                            </div>
-                          ))}
+                      <div className="metric-value">42</div>
+                      <div className="metric-trend">
+                        <span className="trend-up">↑ 15%</span> vs last week
                       </div>
+                      <p className="metric-description">Check-ins per day</p>
                     </div>
-                  )}
 
-                  {activeTab === "employees" && (
-                    <div className="list-section">
-                      <div className="section-header">
-                        <h2>Team Members</h2>
-                        <button className="btn-primary-small">Add Employee</button>
+                    <div className="metric-card">
+                      <div className="metric-header">
+                        <h3>Growth Rate</h3>
                       </div>
-                      <div className="items-list">
-                        {dashboardItems
-                          .filter((item) => item.type === "employee")
-                          .map((item) => (
-                            <div key={item.id} className="list-item">
-                              <div className="item-avatar employee-avatar">
-                                {item.name.split(" ").map(n => n[0]).join("")}
-                              </div>
-                              <div className="item-info">
-                                <h4>{item.name}</h4>
-                                <p className="item-email">{item.email}</p>
-                                <p className="item-meta">
-                                  <IonIcon icon={personOutline} />
-                                  Staff Member
-                                </p>
-                              </div>
-                              <span className="status-badge status-active">Active</span>
-                            </div>
-                          ))}
+                      <div className="metric-value">+12%</div>
+                      <div className="metric-trend">
+                        <span className="trend-up">↑ 3%</span> from last month
                       </div>
+                      <p className="metric-description">Membership growth this month</p>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
           </main>
         </div>
       </IonContent>
+      <Footer />
     </IonPage>
   );
 };
