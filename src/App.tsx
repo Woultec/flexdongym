@@ -19,6 +19,14 @@ import QRScannerHome from "./pages/EmployeePage/QRScanner";
 import StartingPageAdmin from "./pages/AdminPage/StartingPage";
 import EmployeeMenu from "./pages/AdminPage/Employee";
 import AdminMenu from "./pages/AdminPage/Admin";
+import Dashboard from "./pages/AdminPage/dashboard";
+import Members from "./pages/AdminPage/members";
+import Employees from "./pages/AdminPage/employees";
+import Products from "./pages/AdminPage/products";
+import Customers from "./pages/AdminPage/customers";
+import Equipment from "./pages/AdminPage/equipment";
+import PriceEdit from "./pages/AdminPage/priceedit";
+import Profile from "./pages/AdminPage/profile";
 import StatusMemberPage from "./pages/EmployeePage/StatusMember";
 import ProfileMemberPage from "./pages/EmployeePage/ProfileMember";
 
@@ -76,7 +84,6 @@ const App: React.FC = () => {
               <Route exact path="/qr" component={QRScannerHome} />
               <Route exact path="/admin-page" component={StartingPageAdmin} />
               <Route exact path="/employee-login" component={EmployeeMenu} />
-              <Route exact path="/employee-login" component={EmployeeMenu} />
               <Route exact path="/admin-menu" component={AdminMenu} />
               <Route exact path="/status-member" component={StatusMemberPage} />
               <Route
@@ -84,6 +91,17 @@ const App: React.FC = () => {
                 path="/status-member"
                 component={ProfileMemberPage}
               />
+
+              {/* Admin Routes */}
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/admin-page/members" component={Members} />
+              <Route exact path="/admin-page/employees" component={Employees} />
+              <Route exact path="/admin-page/products" component={Products} />
+              <Route exact path="/admin-page/customers" component={Customers} />
+              <Route exact path="/admin-page/equipment" component={Equipment} />
+              <Route exact path="/admin-page/priceedit" component={PriceEdit} />
+              <Route exact path="/admin-page/profile" component={Profile} />
+
               {/* QR Generator Route */}
               <Route exact path="/generator" component={QRGenerator} />
 

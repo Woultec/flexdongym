@@ -1,6 +1,7 @@
 import React from "react";
 import { IonIcon } from "@ionic/react";
 import { homeOutline, peopleOutline, personOutline } from "ionicons/icons";
+import "./menunavbar.css";
 
 interface MenuNavBarProps {
   activeTab: "overview" | "members" | "employees";

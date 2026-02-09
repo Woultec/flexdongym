@@ -1,6 +1,7 @@
 import React from "react";
 import { IonIcon } from "@ionic/react";
 import { logOutOutline } from "ionicons/icons";
+import "./sidenavbar.css";
 
 interface MenuItem {
   id: string;

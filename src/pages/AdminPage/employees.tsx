@@ -21,6 +21,7 @@ import Header from "../../components/admincomponents/widgets/header";
 import SideNavBar from "../../components/admincomponents/widgets/sidenavbar";
 import Footer from "../../components/admincomponents/widgets/footer";
 import "./dashboard.css";
+import "./members.css";
 
 interface Employee {
   id: number;
@@ -114,7 +115,7 @@ const Employees: React.FC = () => {
 
   return (
     <IonPage>
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} title="Employee Management" />
 
       <IonContent>
         <div className="dashboard-layout">

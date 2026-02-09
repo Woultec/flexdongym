@@ -20,6 +20,7 @@ import Header from "../../components/admincomponents/widgets/header";
 import SideNavBar from "../../components/admincomponents/widgets/sidenavbar";
 import Footer from "../../components/admincomponents/widgets/footer";
 import "./dashboard.css";
+import "./members.css";
 
 interface PricingItem {
   id: number;
@@ -141,7 +142,7 @@ const PriceEdit: React.FC = () => {
 
   return (
     <IonPage>
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} title="Price Edit" />
 
       <IonContent>
         <div className="dashboard-layout">

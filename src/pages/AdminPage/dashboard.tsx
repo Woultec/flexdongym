@@ -83,7 +83,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <IonPage>
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} title="Admin Dashboard" />
 
       <IonContent>
         <div className="dashboard-layout">
