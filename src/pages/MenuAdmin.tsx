@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "../../components/Reusable/Button";
+import { Button } from "../components/Reusable/Button";
 
 const MenuAdminButtons: React.FC = () => {
   const history = useHistory();

@@ -1,7 +1,11 @@
-# TODO: Fix Admin Page Navigation
+# TODO - Fix Admin Dashboard Responsiveness
 
-## Steps to Complete
-- [x] Import all admin page components in src/App.tsx
-- [x] Add Route components for each admin page in the Switch block
-- [x] Ensure paths match those in sidenavbar menuItems
-- [x] Test navigation to verify pages change correctly
+## Task: Fix Footer and Header alignment with Sidenavbar on Desktop
+
+### Steps:
+- [x] Understand the current layout structure
+- [ ] Edit admindashboard.css to add proper margin-left for Footer on desktop
+- [ ] Test the changes
+
+### Files to Edit:
+1. `src/pages/Layout/admindashboard.css` - Add Footer styling for desktop

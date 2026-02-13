@@ -12,10 +12,10 @@ import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
 import QRScannerHome from "./pages/EmployeePage/QRScanner";
-import StartingPageAdmin from "./pages/AdminPage/StartingPage";
-import EmployeeMenu from "./pages/AdminPage/Employee";
-import AdminMenu from "./pages/AdminPage/Admin";
-import MenuAdminButtons from "./pages/AdminPage/MenuAdmin";
+import StartingPageAdmin from "./pages/StartingPage";
+import EmployeeMenu from "./pages/Employee";
+import AdminMenu from "./pages/Admin";
+import MenuAdminButtons from "./pages/MenuAdmin";
 import StatusMemberPage from "./pages/EmployeePage/StatusMember";
 import ProfileMemberPage from "./pages/EmployeePage/ProfileMember";
 

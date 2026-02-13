@@ -1,10 +1,10 @@
 import React from "react";
-import { UsernameInput } from "../../components/Reusable/Username";
-import { Button } from "../../components/Reusable/Button";
-import { BackButton } from "../../components/Reusable/BackButton";
+import { UsernameInput } from "../components/Reusable/Username";
+import { Button } from "../components/Reusable/Button";
+import { BackButton } from "../components/Reusable/BackButton";
 import { useHistory } from "react-router-dom";
 
-const AdminMenu: React.FC = () => {
+const EmployeeMenu: React.FC = () => {
   const history = useHistory();
   return (
     <div className="member-menu-container">
@@ -17,7 +17,7 @@ const AdminMenu: React.FC = () => {
           >
             back
           </BackButton>
-          <h1>Admin</h1>
+          <h1>Employee</h1>
         </div>
         <div className="form-container">
           <UsernameInput className="input-username" placeholder="Username" />
@@ -32,4 +32,4 @@ const AdminMenu: React.FC = () => {
     </div>
   );
 };
-export default AdminMenu;
+export default EmployeeMenu;

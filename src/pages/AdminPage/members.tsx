@@ -177,7 +177,7 @@ const Members: React.FC = () => {
 
   return (
     <IonPage>
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} />
+      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} title="Members Management" />
 
       <IonContent>
         <div className="dashboard-layout">

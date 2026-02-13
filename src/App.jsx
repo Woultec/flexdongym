@@ -9,9 +9,9 @@ import MemberMenu from "./pages/EmployeePage/Member";
 import WalkInMenu from "./pages/EmployeePage/WalkIn";
 import PrepaidMenu from "./pages/EmployeePage/Prepaid";
 import QRScannerHome from "./pages/EmployeePage/QRScanner";
-import StartingPageAdmin from "./pages/AdminPage/StartingPage";
+import StartingPageAdmin from "./pages/StartingPage";
 import StatusMemberPage from "./pages/EmployeePage/StatusMember";
-import AdminMenu from "./pages/AdminPage/Admin";
+import AdminMenu from "./pages/Admin";
 import DashboardPage from "./pages/AdminPage/dashboard";
 import MembersPage from "./pages/AdminPage/members";
 import EmployeesPage from "./pages/AdminPage/employees";
@@ -19,6 +19,7 @@ import ProductsPage from "./pages/AdminPage/products";
 import CustomersPage from "./pages/AdminPage/customers";
 import PriceEditPage from "./pages/AdminPage/priceedit";
 import EquipmentPage from "./pages/AdminPage/equipment";
+import Profile from "./pages/AdminPage/profile";
 
 const QRGenerator = () => {
   const [firstName, setFirstName] = useState("");
@@ -137,6 +138,7 @@ const App = () => {
       <Route exact path="/admin-page/customers" component={CustomersPage} />
       <Route exact path="/admin-page/priceedit" component={PriceEditPage} />
       <Route exact path="/admin-page/equipment" component={EquipmentPage} />
+      <Route exact path="/admin-page/profile" component={Profile} />
       <Route exact path="/status-member" component={StatusMemberPage} />
       <Route exact path="/admin-menu" component={AdminMenu} />
       <Route exact path="/dashboard" component={DashboardPage} />

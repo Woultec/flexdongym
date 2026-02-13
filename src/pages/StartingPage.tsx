@@ -1,8 +1,6 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import "./StartingPage.css";
-import { UsernameInput } from "../../components/Reusable/Username";
-import { PasswordInput } from "../../components/Reusable/Password";
-import { Button } from "../../components/Reusable/Button";
+import { Button } from "../components/Reusable/Button";
 import { useHistory } from "react-router-dom";
 
 const StartingPageAdmin: React.FC = () => {
