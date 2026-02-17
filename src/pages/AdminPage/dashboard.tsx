@@ -1,206 +1,285 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  IonIcon,
-  IonContent,
   IonPage,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonButton,
+  IonText,
 } from "@ionic/react";
-import {
-  homeOutline,
-  peopleOutline,
-  cubeOutline,
-  pricetagOutline,
-  settingsOutline,
-  statsChartOutline,
-  personOutline,
-} from "ionicons/icons";
 import { useHistory } from "react-router-dom";
-import Header from "../../components/admincomponents/widgets/header";
-import SideNavBar from "../../components/admincomponents/widgets/sidenavbar";
-import Footer from "../../components/admincomponents/widgets/footer";
 import "./dashboard.css";
-
-interface DashboardStats {
-  totalMembers: number;
-  activeTodayMembers: number;
-  totalEmployees: number;
-  monthlyRevenue: number;
-}
-
-interface DashboardItem {
-  id: number;
-  name: string;
-  status: "active" | "inactive" | "pending";
-  type: "member" | "employee";
-  joinDate?: string;
-  email?: string;
-}
-
-interface MenuItem {
-  id: string;
-  label: string;
-  icon: string;
-  path: string;
-}
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
-
-  // Menu items configuration
-  const menuItems: MenuItem[] = [
-    { id: "dashboard", label: "Dashboard", icon: homeOutline, path: "/dashboard" },
-    { id: "members", label: "Members", icon: peopleOutline, path: "/admin-page/members" },
-    { id: "employees", label: "Employees", icon: personOutline, path: "/admin-page/employees" },
-    { id: "products", label: "Products", icon: cubeOutline, path: "/admin-page/products" },
-    { id: "customers", label: "Customers", icon: statsChartOutline, path: "/admin-page/customers" },
-    { id: "equipment", label: "Equipment", icon: settingsOutline, path: "/admin-page/equipment" },
-    { id: "pricing", label: "Price Edit", icon: pricetagOutline, path: "/admin-page/priceedit" },
-    { id: "profile", label: "Profile", icon: personOutline, path: "/admin-page/profile" },
-  ];
-
-  // Mock data - replace with API calls
-  const [stats] = useState<DashboardStats>({
-    totalMembers: 156,
-    activeTodayMembers: 42,
-    totalEmployees: 8,
-    monthlyRevenue: 12500,
-  });
-
-
-
-  const handleNavigate = (path: string, itemId: string) => {
-    setActiveMenuItem(itemId);
-    setMenuOpen(false);
-    history.push(path);
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-
 
   return (
     <IonPage>
-      <Header menuOpen={menuOpen} toggleMenu={toggleMenu} title="Admin Dashboard" />
+      <IonContent fullscreen>
+        <div className="page-container">
+          <div className="dash-header">
+            <IonText>
+              <h1 className="dash-title">Admin Dashboard</h1>
+              <p className="dash-subtitle">
+                Overview of members, sales, staff, and equipment status.
+              </p>
+            </IonText>
+          </div>
 
-      <IonContent>
-        <div className="dashboard-layout">
-          <SideNavBar
-            menuOpen={menuOpen}
-            activeMenuItem={activeMenuItem}
-            handleNavigate={handleNavigate}
-            menuItems={menuItems}
-            toggleMenu={toggleMenu}
-          />
+          {/* KPI Cards */}
+          <IonGrid>
+            <IonRow className="row-gap">
+              <IonCol size="12" sizeMd="6" sizeLg="3">
+                <IonCard className="kpi-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Active Members</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <div className="kpi-value">128</div>
+                    <div className="kpi-note">+5 this week</div>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
 
-          {/* Main Content */}
-          <main className="dashboard-main">
-            <div className="dashboard-container">
-              {/* Welcome Banner */}
-              <div className="welcome-banner">
-                <div className="welcome-content">
-                  <h2>Welcome back, Admin!</h2>
-                  <p>Here's what's happening with your gym today.</p>
-                </div>
-                <div className="banner-decoration"></div>
-              </div>
+              <IonCol size="12" sizeMd="6" sizeLg="3">
+                <IonCard className="kpi-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Today Sales</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <div className="kpi-value">$245</div>
+                    <div className="kpi-note">Products + Walk-ins</div>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
 
-              {/* Stats Cards */}
-              <div className="stats-grid">
-                <div className="stat-card card-primary">
-                  <div className="stat-icon-wrapper">
-                    <IonIcon icon={peopleOutline} className="stat-icon" />
-                  </div>
-                  <div className="stat-info">
-                    <p className="stat-label">Total Members</p>
-                    <h3 className="stat-number">{stats.totalMembers}</h3>
-                    <span className="stat-change positive">+12% from last month</span>
-                  </div>
-                </div>
+              <IonCol size="12" sizeMd="6" sizeLg="3">
+                <IonCard className="kpi-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Low Stock</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <div className="kpi-value">3</div>
+                    <div className="kpi-note">Need restock</div>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
 
-                <div className="stat-card card-success">
-                  <div className="stat-icon-wrapper">
-                    <IonIcon icon={statsChartOutline} className="stat-icon" />
-                  </div>
-                  <div className="stat-info">
-                    <p className="stat-label">Active Today</p>
-                    <h3 className="stat-number">{stats.activeTodayMembers}</h3>
-                    <span className="stat-change positive">+5% from yesterday</span>
-                  </div>
-                </div>
+              <IonCol size="12" sizeMd="6" sizeLg="3">
+                <IonCard className="kpi-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Broken Equipment</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <div className="kpi-value">2</div>
+                    <div className="kpi-note">Under maintenance</div>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
 
-                <div className="stat-card card-info">
-                  <div className="stat-icon-wrapper">
-                    <IonIcon icon={personOutline} className="stat-icon" />
-                  </div>
-                  <div className="stat-info">
-                    <p className="stat-label">Total Employees</p>
-                    <h3 className="stat-number">{stats.totalEmployees}</h3>
-                    <span className="stat-change neutral">No change</span>
-                  </div>
-                </div>
+          {/* Primary CTA (single) */}
+          <IonCard className="hero-card">
+            <IonCardHeader>
+              <IonCardTitle>Quick Action</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonButton
+                expand="block"
+                color="primary"
+                className="primary-cta"
+                onClick={() => history.push("/admin/customers")}
+              >
+                Add Customer
+              </IonButton>
+              <p className="helper-text">
+                Create a customer profile and generate their QR identity.
+              </p>
+            </IonCardContent>
+          </IonCard>
 
-                <div className="stat-card card-warning">
-                  <div className="stat-icon-wrapper">
-                    <span className="stat-icon">💰</span>
-                  </div>
-                  <div className="stat-info">
-                    <p className="stat-label">Monthly Revenue</p>
-                    <h3 className="stat-number">${stats.monthlyRevenue.toLocaleString()}</h3>
-                    <span className="stat-change positive">+8% from last month</span>
-                  </div>
-                </div>
-              </div>
+          {/* Secondary actions */}
+          <div className="section">
+            <h2 className="section-title">Manage</h2>
 
-              {/* Overview */}
-              <div className="content-section">
-                <div className="overview-section">
-                  <div className="metrics-grid">
-                    <div className="metric-card">
-                      <div className="metric-header">
-                        <h3>Gym Utilization</h3>
-                        <span className="metric-badge">Live</span>
-                      </div>
-                      <div className="metric-value">68%</div>
-                      <div className="metric-chart">
-                        <div className="progress-bar">
-                          <div className="progress-fill" style={{ width: "68%" }}></div>
-                        </div>
-                      </div>
-                      <p className="metric-description">Current capacity usage</p>
-                    </div>
+            <IonGrid>
+              <IonRow className="row-gap">
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Customers</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/customers")}
+                      >
+                        View Customers
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
 
-                    <div className="metric-card">
-                      <div className="metric-header">
-                        <h3>Avg. Daily Visits</h3>
-                      </div>
-                      <div className="metric-value">42</div>
-                      <div className="metric-trend">
-                        <span className="trend-up">↑ 15%</span> vs last week
-                      </div>
-                      <p className="metric-description">Check-ins per day</p>
-                    </div>
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Employees</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/employees")}
+                      >
+                        Manage Staff
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
 
-                    <div className="metric-card">
-                      <div className="metric-header">
-                        <h3>Growth Rate</h3>
-                      </div>
-                      <div className="metric-value">+12%</div>
-                      <div className="metric-trend">
-                        <span className="trend-up">↑ 3%</span> from last month
-                      </div>
-                      <p className="metric-description">Membership growth this month</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </main>
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Products</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/products")}
+                      >
+                        Manage Products
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Equipment</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/equipment")}
+                      >
+                        Equipment Status
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Pricing</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/priceedit")}
+                      >
+                        Edit Prices
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+
+                <IonCol size="12" sizeMd="6" sizeLg="4">
+                  <IonCard className="action-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Profile</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <IonButton
+                        expand="block"
+                        fill="outline"
+                        color="primary"
+                        onClick={() => history.push("/admin/profile")}
+                      >
+                        View Profile
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </div>
+
+          {/* Alerts */}
+          <div className="section">
+            <h2 className="section-title">Alerts</h2>
+
+            <IonGrid>
+              <IonRow className="row-gap">
+                <IonCol size="12" sizeLg="6">
+                  <IonCard className="list-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Broken Equipment</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <ul className="simple-list">
+                        <li>
+                          Treadmill #2 <span className="pill pill-danger">Broken</span>
+                        </li>
+                        <li>
+                          Bench Press #1{" "}
+                          <span className="pill pill-warning">Maintenance</span>
+                        </li>
+                      </ul>
+
+                      <IonButton
+                        expand="block"
+                        color="medium"
+                        onClick={() => history.push("/admin/equipment")}
+                      >
+                        View Equipment
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+
+                <IonCol size="12" sizeLg="6">
+                  <IonCard className="list-card">
+                    <IonCardHeader>
+                      <IonCardTitle>Membership Expiring</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <ul className="simple-list">
+                        <li>John D. — 3 days</li>
+                        <li>Sarah K. — 5 days</li>
+                      </ul>
+
+                      <IonButton
+                        expand="block"
+                        color="medium"
+                        onClick={() => history.push("/admin/customers")}
+                      >
+                        View Customers
+                      </IonButton>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </div>
         </div>
       </IonContent>
-      <Footer />
     </IonPage>
   );
 };

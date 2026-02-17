@@ -1,17 +1,19 @@
 import React from "react";
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/react";
 
-const PriceEdit: React.FC = () => {
+const POS: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>Price Edit</IonTitle>
+          <IonTitle>POS</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">Pricing editor (placeholder)</IonContent>
+      <IonContent className="ion-padding">
+        POS screen (placeholder)
+      </IonContent>
     </IonPage>
   );
 };
 
-export default PriceEdit;
+export default POS;

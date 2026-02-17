@@ -1,4 +1,217 @@
+/* ========================================
+   GLOBAL STYLES & UTILITIES
+   ======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--gym-text-primary);
+  background-color: var(--gym-bg-secondary);
+  line-height: var(--line-height-normal);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Spacing Utilities */
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+/* Text Utilities */
+.text-primary { color: var(--gym-text-primary); }
+.text-secondary { color: var(--gym-text-secondary); }
+.text-muted { color: var(--gym-text-muted); }
+.text-success { color: var(--gym-success); }
+.text-warning { color: var(--gym-warning); }
+.text-danger { color: var(--gym-danger); }
+.text-info { color: var(--gym-info); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-medium { font-weight: var(--font-weight-medium); }
+
+/* ========================================
+   COMMON COMPONENT PATTERNS
+   ======================================== */
+
+/* Page Container */
+.gym-page-container {
+  padding: var(--spacing-md);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .gym-page-container {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Card Component */
+.gym-card {
+  background: var(--gym-bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-md);
+  transition: all var(--transition-base);
+}
+
+.gym-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Button Enhancements */
+.gym-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.gym-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.gym-btn:active {
+  transform: translateY(0);
+}
+
+.gym-btn-primary {
+  background: var(--gym-primary);
+  color: white;
+}
+
+.gym-btn-primary:hover {
+  background: var(--gym-primary-light);
+}
+
+.gym-btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  min-height: 54px;
+}
+
+/* Input Enhancements */
+.gym-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 1px solid var(--gym-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  transition: all var(--transition-base);
+  background: var(--gym-bg-primary);
+  color: var(--gym-text-primary);
+}
+
+.gym-input:focus {
+  outline: none;
+  border-color: var(--gym-accent);
+  box-shadow: 0 0 0 3px rgba(0, 132, 201, 0.1);
+}
+
+.gym-input::placeholder {
+  color: var(--gym-text-muted);
+}
+
+/* Status Badges */
+.gym-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.gym-badge-success {
+  background: var(--gym-success-bg);
+  color: var(--gym-success);
+}
+
+.gym-badge-warning {
+  background: var(--gym-warning-bg);
+  color: #8a5a00;
+}
+
+.gym-badge-danger {
+  background: var(--gym-danger-bg);
+  color: var(--gym-danger);
+}
+
+/* Loading Spinner */
+.gym-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--gym-border-light);
+  border-top-color: var(--gym-primary);
+  border-radius: 50%;
+  animation: gym-spin 0.8s linear infinite;
+}
+
+@keyframes gym-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible for keyboard navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gym-accent);
+  outline-offset: 2px;
 }

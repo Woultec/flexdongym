@@ -1,0 +1,128 @@
+/* Centered container for the entire component */
+.admin-login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--gym-bg-secondary) 0%, var(--gym-bg-tertiary) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+/* Main container */
+.admin-main-container {
+  background: var(--gym-bg-primary);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  width: 100%;
+  max-width: var(--max-width-form);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  min-height: 500px;
+}
+
+/* Image group */
+.admin-image-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.dondon-logo {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: var(--spacing-sm);
+}
+
+.admin-gym-name {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  text-align: center;
+  color: var(--gym-primary);
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+/* Button group */
+.admin-button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.btn-signup {
+  width: 100%;
+  max-width: 320px;
+  padding: var(--spacing-md) var(--spacing-xl);
+  min-height: 56px;
+  background: var(--gym-primary);
+  color: white;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  border: none;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-signup:hover {
+  background: var(--gym-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-signup:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-signup:focus-visible {
+  outline: 3px solid var(--gym-accent);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .admin-main-container {
+    padding: var(--spacing-xl) var(--spacing-lg);
+    min-height: auto;
+  }
+  
+  .admin-gym-name {
+    font-size: var(--font-size-xl);
+  }
+  
+  .btn-signup {
+    font-size: var(--font-size-base);
+    min-height: 52px;
+  }
+  
+  .dondon-logo {
+    max-width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .admin-main-container {
+    padding: var(--spacing-3xl) var(--spacing-2xl);
+  }
+  
+  .admin-gym-name {
+    font-size: var(--font-size-3xl);
+  }
+}

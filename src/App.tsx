@@ -1,63 +1,11 @@
-import {
-  IonApp,
-  IonRouterOutlet,
-  IonSplitPane,
-  setupIonicReact,
-} from "@ionic/react";
+import { IonApp, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-import Menu from "./components/Menu";
-import Page from "./pages/Page";
-import QRGenerator from "./App"; // QR Generator
-import LoginRegister from "./pages/EmployeePage/LoginRegister";
-import MenuButtons from "./pages/EmployeePage/Menu";
-import MemberMenu from "./pages/EmployeePage/Member";
-import WalkInMenu from "./pages/EmployeePage/WalkIn";
-import PrepaidMenu from "./pages/EmployeePage/Prepaid";
-import QRScannerHome from "./pages/EmployeePage/QRScanner";
-import StartingPageAdmin from "./pages/StartingPage";
-import EmployeeMenu from "./pages/Employee";
-import AdminMenu from "./pages/Admin";
-import Dashboard from "./pages/AdminPage/dashboard";
-import Members from "./pages/AdminPage/members";
-import Employees from "./pages/AdminPage/employees";
-import Products from "./pages/AdminPage/products";
-import Customers from "./pages/AdminPage/customers";
-import Equipment from "./pages/AdminPage/equipment";
-import PriceEdit from "./pages/AdminPage/priceedit";
-import Profile from "./pages/AdminPage/profile";
-import StatusMemberPage from "./pages/EmployeePage/StatusMember";
-import ProfileMemberPage from "./pages/EmployeePage/ProfileMember";
-
-/* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS utils that can be commented out */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-/* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
-
-/* Theme variables */
-import "./theme/variables.css";
+import Admin from "./pages/Admin";
+import Employee from "./pages/Employee";
+import StartingPageAdmin from "./pages/Landingpage/StartingPage";
+import MenuAdminButtons from "./pages/Landingpage/User_Role";
 
 setupIonicReact();
 
@@ -65,51 +13,16 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
+        {/* Landing / role selection */}
+        <Route exact path="/" component={StartingPageAdmin} />
+        <Route exact path="/menu-admin" component={MenuAdminButtons} />
 
-          <IonRouterOutlet id="main">
-            <Switch>
-              {/* Default Redirect */}
-              <Route exact path="/">
-                <Redirect to="/login" />
-              </Route>
+        {/* Main apps by role */}
+        <Route path="/admin" component={Admin} />
+        <Route path="/employee" component={Employee} />
 
-              {/* Employee Routes */}
-              <Route exact path="/login" component={LoginRegister} />
-              <Route exact path="/menu" component={MenuButtons} />
-              <Route exact path="/member" component={MemberMenu} />
-              <Route exact path="/walkin" component={WalkInMenu} />
-              <Route exact path="/prepaid" component={PrepaidMenu} />
-              <Route exact path="/qr" component={QRScannerHome} />
-              <Route exact path="/admin-page" component={StartingPageAdmin} />
-              <Route exact path="/employee-login" component={EmployeeMenu} />
-              <Route exact path="/admin-menu" component={AdminMenu} />
-              <Route exact path="/status-member" component={StatusMemberPage} />
-              <Route
-                exact
-                path="/status-member"
-                component={ProfileMemberPage}
-              />
-
-              {/* Admin Routes */}
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/admin-page/members" component={Members} />
-              <Route exact path="/admin-page/employees" component={Employees} />
-              <Route exact path="/admin-page/products" component={Products} />
-              <Route exact path="/admin-page/customers" component={Customers} />
-              <Route exact path="/admin-page/equipment" component={Equipment} />
-              <Route exact path="/admin-page/priceedit" component={PriceEdit} />
-              <Route exact path="/admin-page/profile" component={Profile} />
-
-              {/* QR Generator Route */}
-              <Route exact path="/generator" component={QRGenerator} />
-
-              {/* Folder Route - keep at the end */}
-              <Route exact path="/folder/:name" component={Page} />
-            </Switch>
-          </IonRouterOutlet>
-        </IonSplitPane>
+        {/* Fallback */}
+        <Redirect exact from="/home" to="/" />
       </IonReactRouter>
     </IonApp>
   );

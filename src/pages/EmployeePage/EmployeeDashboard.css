@@ -1,4 +1,4 @@
-/* Admin Dashboard Styles */
+/* Employee Dashboard Styles */
 .page-container {
   padding: var(--spacing-md);
   background: var(--gym-bg-secondary);
@@ -28,75 +28,63 @@
   line-height: var(--line-height-normal);
 }
 
-.row-gap {
-  row-gap: var(--spacing-md);
-}
-
 /* Card Styles */
-.kpi-card,
 .hero-card,
-.action-card,
-.list-card {
+.action-card {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   transition: all var(--transition-base);
   background: var(--gym-bg-primary);
 }
 
-.kpi-card:hover,
+.hero-card {
+  background: linear-gradient(135deg, var(--gym-primary) 0%, var(--gym-primary-light) 100%);
+  color: white;
+}
+
+.hero-card ion-card-header ion-card-title {
+  color: white;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
 .action-card:hover {
   box-shadow: var(--shadow-card-hover);
   transform: translateY(-2px);
 }
 
-.kpi-card ion-card-header,
-.action-card ion-card-header,
-.hero-card ion-card-header {
-  padding-bottom: var(--spacing-sm);
-}
-
-.kpi-card ion-card-title,
-.action-card ion-card-title,
-.hero-card ion-card-title {
+.action-card ion-card-title {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   color: var(--gym-text-secondary);
   text-transform: none;
 }
 
-.kpi-value {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--gym-primary);
-  line-height: 1;
-  margin-bottom: var(--spacing-xs);
-}
-
-.kpi-note {
-  margin-top: var(--spacing-xs);
-  color: var(--gym-text-muted);
-  font-size: var(--font-size-sm);
-}
-
-/* CTA Button */
-.primary-cta {
+/* Scan Button */
+.scan-btn {
   min-height: 54px;
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
+  background: white;
+  color: var(--gym-primary);
 }
 
-.primary-cta:hover {
+.scan-btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .helper-text {
   margin: var(--spacing-md) 0 0;
-  color: var(--gym-text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   font-size: var(--font-size-sm);
   text-align: center;
+}
+
+.row-gap {
+  row-gap: var(--spacing-md);
 }
 
 /* Sections */
@@ -109,44 +97,6 @@
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--gym-primary);
-}
-
-/* List Styles */
-.simple-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: var(--spacing-sm);
-}
-
-/* Status Pills/Badges */
-.pill {
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-pill);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  margin-left: var(--spacing-sm);
-  display: inline-flex;
-  align-items: center;
-}
-
-.pill-danger {
-  background: var(--gym-danger-bg);
-  color: var(--gym-danger);
-  border: 1px solid var(--gym-danger-border);
-}
-
-.pill-warning {
-  background: var(--gym-warning-bg);
-  color: #8a5a00;
-  border: 1px solid var(--gym-warning-border);
-}
-
-.pill-success {
-  background: var(--gym-success-bg);
-  color: var(--gym-success);
-  border: 1px solid var(--gym-success-border);
 }
 
 /* Responsive Styles */
@@ -165,10 +115,6 @@
   
   .dash-subtitle {
     font-size: var(--font-size-lg);
-  }
-  
-  .kpi-value {
-    font-size: 3rem;
   }
 }
 

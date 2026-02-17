@@ -1,0 +1,35 @@
+/* Admin Navbar Styles */
+ion-menu ion-content {
+  --background: var(--gym-bg-primary);
+}
+
+ion-menu ion-list {
+  background: transparent;
+  padding: var(--spacing-md) 0;
+}
+
+ion-menu ion-item {
+  --background: transparent;
+  --background-hover: var(--gym-bg-secondary);
+  --background-activated: var(--gym-accent);
+  --color: var(--gym-text-primary);
+  --color-activated: white;
+  --padding-start: var(--spacing-lg);
+  --padding-end: var(--spacing-lg);
+  --border-radius: var(--radius-md);
+  margin: var(--spacing-xs) var(--spacing-md);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-base);
+}
+
+ion-menu ion-item:hover {
+  transform: translateX(4px);
+}
+
+ion-menu ion-item.ion-activated {
+  font-weight: var(--font-weight-bold);
+}
+
+ion-menu ion-label {
+  font-size: var(--font-size-base);
+}

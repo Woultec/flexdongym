@@ -9,9 +9,10 @@ export const BackButton: React.FC<BackButtonProps> = ({
   children,
   onClick,
   className,
+  ...rest
 }) => {
   return (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={className} {...rest}>
       {children}
     </button>
   );

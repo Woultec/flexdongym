@@ -1,3 +1,5 @@
+import React from "react";
+
 interface QRScannerProps {
   items: string[];
   active: string;

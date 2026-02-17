@@ -1,2 +1,175 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+:root {
+  /* Primary brand color */
+  --ion-color-primary: #04354F;
+  --ion-color-primary-rgb: 4, 53, 79;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #033047;
+  --ion-color-primary-tint: #1d4a61;
+
+  /** secondary - Accent Blue **/
+  --ion-color-secondary: #0084c9;
+  --ion-color-secondary-rgb: 0, 132, 201;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0074b1;
+  --ion-color-secondary-tint: #1a90ce;
+
+  /** success **/
+  --ion-color-success: #28a745;
+  --ion-color-success-rgb: 40, 167, 69;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #24923e;
+  --ion-color-success-tint: #3eb158;
+
+  /** warning **/
+  --ion-color-warning: #ffc107;
+  --ion-color-warning-rgb: 255, 193, 7;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0aa06;
+  --ion-color-warning-tint: #ffc720;
+
+  /** danger **/
+  --ion-color-danger: #dc3545;
+  --ion-color-danger-rgb: 220, 53, 69;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #c22e3c;
+  --ion-color-danger-tint: #e04958;
+
+  /** dark **/
+  --ion-color-dark: #0b2230;
+  --ion-color-dark-rgb: 11, 34, 48;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #0a1e2a;
+  --ion-color-dark-tint: #233845;
+
+  /** medium **/
+  --ion-color-medium: #4a5b65;
+  --ion-color-medium-rgb: 74, 91, 101;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #415059;
+  --ion-color-medium-tint: #5c6b74;
+
+  /** light **/
+  --ion-color-light: #f8f9fa;
+  --ion-color-light-rgb: 248, 249, 250;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #dadcdd;
+  --ion-color-light-tint: #f9fafb;
+
+  /* ========================================
+     CUSTOM GYM DESIGN SYSTEM
+     ======================================== */
+  
+  /* Brand Colors */
+  --gym-primary: #04354f;
+  --gym-primary-light: #1d4961;
+  --gym-primary-dark: #032e45;
+  --gym-accent: #0084c9;
+  --gym-accent-light: #1a90ce;
+  --gym-accent-dark: #0074b1;
+
+  /* Neutral Colors */
+  --gym-bg-primary: #ffffff;
+  --gym-bg-secondary: #f8f9fa;
+  --gym-bg-tertiary: #e9ecef;
+  --gym-bg-light: #f4f5f6;
+  --gym-border: #dee2e6;
+  --gym-border-light: #e9ecef;
+  --gym-text-primary: #0b2230;
+  --gym-text-secondary: #4a5b65;
+  --gym-text-muted: #6c757d;
+
+  /* Status Colors */
+  --gym-success: #28a745;
+  --gym-success-bg: #d4edda;
+  --gym-success-border: #c3e6cb;
+  --gym-warning: #ffc107;
+  --gym-warning-bg: #fff3cd;
+  --gym-warning-border: #ffeaa7;
+  --gym-danger: #dc3545;
+  --gym-danger-bg: #f8d7da;
+  --gym-danger-border: #f5c6cb;
+  --gym-info: #0084c9;
+  --gym-info-bg: #d1ecf1;
+  --gym-info-border: #bee5eb;
+
+  /* Spacing System (8px base) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-round: 50%;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 15px 30px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 2px 8px rgba(4, 53, 79, 0.08);
+  --shadow-card-hover: 0 8px 16px rgba(4, 53, 79, 0.12);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* Z-index layers */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* Common Layouts */
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1280px;
+  --max-width-form: 480px;
+  --max-width-content: 1200px;
+}

@@ -1,0 +1,85 @@
+/* User Role Selection Page */
+.login-register-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--gym-bg-secondary) 0%, var(--gym-bg-tertiary) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+.menu-main-container {
+  background: var(--gym-bg-primary);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: var(--max-width-form);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.menu-main-container h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--gym-primary);
+  margin: 0 0 var(--spacing-md) 0;
+  text-align: center;
+}
+
+.menu-main-container button {
+  width: 100%;
+  max-width: 300px;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  min-height: 64px;
+  background: var(--gym-primary);
+  color: white;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+  border: none;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-main-container button:hover {
+  background: var(--gym-primary-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.menu-main-container button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-main-container button:nth-child(2) {
+  background: var(--gym-accent);
+}
+
+.menu-main-container button:nth-child(2):hover {
+  background: var(--gym-accent-light);
+}
+
+@media (max-width: 480px) {
+  .menu-main-container {
+    padding: var(--spacing-xl);
+  }
+  
+  .menu-main-container h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .menu-main-container button {
+    font-size: var(--font-size-lg);
+    min-height: 56px;
+  }
+}

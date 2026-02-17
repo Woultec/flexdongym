@@ -1,0 +1,16 @@
+/* Admin Header Styles */
+.admin-header {
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-header ion-toolbar {
+  --background: var(--gym-primary);
+  --color: white;
+  --padding-top: var(--spacing-sm);
+  --padding-bottom: var(--spacing-sm);
+}
+
+.admin-header ion-title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+}

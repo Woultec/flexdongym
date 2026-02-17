@@ -1,0 +1,118 @@
+/* Common Admin Page Styles */
+.admin-page {
+  background: var(--gym-bg-secondary);
+  min-height: 100vh;
+}
+
+.admin-page ion-content {
+  --background: var(--gym-bg-secondary);
+}
+
+.admin-page ion-header ion-toolbar {
+  --background: var(--gym-bg-primary);
+  --border-color: var(--gym-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-page ion-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--gym-primary);
+}
+
+/* Content Styling */
+.admin-page .ion-padding {
+  padding: var(--spacing-lg);
+}
+
+.admin-page ion-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+}
+
+.admin-page ion-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.admin-page ion-card-header {
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--gym-border-light);
+}
+
+.admin-page ion-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--gym-primary);
+}
+
+.admin-page ion-card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--gym-text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+.admin-page ion-card-content {
+  padding-top: var(--spacing-md);
+}
+
+/* Buttons */
+.admin-page ion-button {
+  --border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-base);
+}
+
+.admin-page ion-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Lists and Items */
+.admin-page ion-list {
+  background: transparent;
+}
+
+.admin-page ion-item {
+  --background: var(--gym-bg-primary);
+  --border-color: var(--gym-border-light);
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.admin-page ion-item:hover {
+  --background: var(--gym-bg-secondary);
+  transform: translateX(4px);
+}
+
+/* Empty States */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  color: var(--gym-text-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+.empty-state-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--gym-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.empty-state-text {
+  font-size: var(--font-size-base);
+  color: var(--gym-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}

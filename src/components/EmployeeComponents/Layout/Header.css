@@ -1,0 +1,16 @@
+/* Employee Header Styles */
+.employee-header {
+  box-shadow: var(--shadow-sm);
+}
+
+.employee-header ion-toolbar {
+  --background: var(--gym-accent);
+  --color: white;
+  --padding-top: var(--spacing-sm);
+  --padding-bottom: var(--spacing-sm);
+}
+
+.employee-header ion-title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+}

@@ -9,9 +9,10 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className,
+  ...rest
 }) => {
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} onClick={onClick} {...rest}>
       {children}
     </button>
   );

@@ -1,110 +1,54 @@
-import React, { useState } from "react";
 import {
-  IonContent,
   IonPage,
-  IonIcon,
+  IonSplitPane,
+  IonRouterOutlet
 } from "@ionic/react";
-import {
-  homeOutline,
-  peopleOutline,
-  cubeOutline,
-  pricetagOutline,
-  settingsOutline,
-  statsChartOutline,
-  personOutline,
-} from "ionicons/icons";
-import { useHistory } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-import Header from "../../components/admincomponents/widgets/header";
-import Footer from "../../components/admincomponents/widgets/footer";
-import MenuNavBar from "../../components/admincomponents/widgets/menunavbar";
-import SideNavBar from "../../components/admincomponents/widgets/sidenavbar";
+import Header from "../../components/admincomponents/Layout/header";
+import SideNavbar from "../../components/admincomponents/Layout/Navbar";
+import Footer from "../../components/admincomponents/Layout/footer";
 
-import "./admindashboard.css";
+import Dashboard from "../AdminPage/dashboard";
+import Customers from "../AdminPage/customers";
+import Employees from "../AdminPage/employees";
+import Equipment from "../AdminPage/equipment";
+import Products from "../AdminPage/products";
+import Profile from "../AdminPage/profile";
+import PriceEdit from "../AdminPage/priceedit";
 
-interface MenuItem {
-  id: string;
-  label: string;
-  icon: string;
-  path: string;
-}
-
-interface AdminDashboardLayoutProps {
-  children: React.ReactNode;
-  title?: string;
-}
-
-const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({ 
-  children, 
-  title = "Admin Dashboard" 
-}) => {
-  const history = useHistory();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
-  const [activeTab, setActiveTab] = useState<"overview" | "members" | "employees">("overview");
-
-  // Menu items configuration for SideNavBar
-  const menuItems: MenuItem[] = [
-    { id: "dashboard", label: "Dashboard", icon: homeOutline, path: "/dashboard" },
-    { id: "members", label: "Members", icon: peopleOutline, path: "/admin-page/members" },
-    { id: "employees", label: "Employees", icon: personOutline, path: "/admin-page/employees" },
-    { id: "products", label: "Products", icon: cubeOutline, path: "/admin-page/products" },
-    { id: "customers", label: "Customers", icon: statsChartOutline, path: "/admin-page/customers" },
-    { id: "equipment", label: "Equipment", icon: settingsOutline, path: "/admin-page/equipment" },
-    { id: "pricing", label: "Price Edit", icon: pricetagOutline, path: "/admin-page/priceedit" },
-    { id: "profile", label: "Profile", icon: personOutline, path: "/admin-page/profile" },
-  ];
-
-  const handleNavigate = (path: string, itemId: string) => {
-    setActiveMenuItem(itemId);
-    setMenuOpen(false);
-    history.push(path);
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+const AdminDashboard: React.FC = () => {
   return (
     <IonPage>
-      <Header 
-        menuOpen={menuOpen} 
-        toggleMenu={toggleMenu} 
-        title={title} 
-      />
+      <IonSplitPane contentId="admin-content">
 
-      <IonContent>
-        <div className="admin-dashboard-layout">
-          {/* Side Navigation Bar */}
-          <SideNavBar
-            menuOpen={menuOpen}
-            activeMenuItem={activeMenuItem}
-            handleNavigate={handleNavigate}
-            menuItems={menuItems}
-            toggleMenu={toggleMenu}
-          />
+        <SideNavbar />
 
-          {/* Main Content Area */}
-          <main className="admin-main-content">
-            {/* Menu Navigation Bar (Tabs) */}
-            <MenuNavBar
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            />
+        <div style={{ width: "100%" }}>
+          
+          <Header />
 
-            {/* Page Content */}
-            <div className="admin-page-content">
-              {children}
-            </div>
-          </main>
+          <IonRouterOutlet id="admin-content">
+
+            <Route exact path="/admin/dashboard" component={Dashboard} />
+            <Route exact path="/admin/customers" component={Customers} />
+            <Route exact path="/admin/employees" component={Employees} />
+            <Route exact path="/admin/equipment" component={Equipment} />
+            <Route exact path="/admin/products" component={Products} />
+            <Route exact path="/admin/profile" component={Profile} />
+            <Route exact path="/admin/priceedit" component={PriceEdit} />
+
+            <Redirect exact from="/admin" to="/admin/dashboard" />
+
+          </IonRouterOutlet>
+
+          <Footer />
+
         </div>
-      </IonContent>
 
-      <div className="admin-footer-wrapper">
-        <Footer />
-      </div>
+      </IonSplitPane>
     </IonPage>
   );
 };
 
-export default AdminDashboardLayout;
+export default AdminDashboard;
