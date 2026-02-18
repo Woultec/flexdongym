@@ -73,7 +73,7 @@ const EmployeeDashboard: React.FC = () => {
               <IonButton
                 expand="block"
                 className="action-button action-primary"
-                onClick={() => history.push("/employee/qr")}
+                onClick={() => history.push("/employee/qr-scanner")}
               >
                 <IonIcon slot="start" icon={qrCodeOutline} />
                 Scan QR

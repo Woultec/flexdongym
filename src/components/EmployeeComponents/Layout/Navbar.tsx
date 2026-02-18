@@ -18,7 +18,7 @@ const EmployeeNavbar: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    history.push('/');
+    window.location.href = '/';
   };
 
   return (
@@ -43,9 +43,9 @@ const EmployeeNavbar: React.FC = () => {
         <IonLabel>POS</IonLabel>
       </IonTabButton>
 
-      <IonTabButton tab="register" href="/employee/status-member">
-        <IonIcon icon={personAddOutline} />
-        <IonLabel>Register</IonLabel>
+      <IonTabButton tab="logout" onClick={handleLogout}>
+        <IonIcon icon={logOutOutline} />
+        <IonLabel>Logout</IonLabel>
       </IonTabButton>
     </IonTabBar>
   );

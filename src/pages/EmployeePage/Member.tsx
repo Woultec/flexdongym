@@ -87,7 +87,7 @@ const MemberList: React.FC = () => {
   }, [searchText, members]);
 
   const handleMemberClick = (memberId: string) => {
-    history.push(`/employee/member-profile/${memberId}`);
+    history.push(`/employee/member/${memberId}`);
   };
 
   const getStatusBadgeClass = (status: string) => {

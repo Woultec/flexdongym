@@ -1,8 +1,7 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
+import { IonRouterOutlet } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
 import AdminNavbar from '../../components/admincomponents/Layout/Navbar';
-import AdminHeader from '../../components/admincomponents/Layout/header';
 import Dashboard from '../AdminPage/dashboard';
 import Customers from '../AdminPage/customers';
 import Employees from '../AdminPage/employees';
@@ -16,7 +15,7 @@ const AdminDashboardLayout: React.FC = () => {
   return (
     <>
       <AdminNavbar />
-      <IonPage id="admin-content">
+      <IonRouterOutlet id="admin-content">
         <Route path="/admin/dashboard" exact component={Dashboard} />
         <Route path="/admin/customers" exact component={Customers} />
         <Route path="/admin/employees" exact component={Employees} />
@@ -27,7 +26,7 @@ const AdminDashboardLayout: React.FC = () => {
         <Route exact path="/admin">
           <Redirect to="/admin/dashboard" />
         </Route>
-      </IonPage>
+      </IonRouterOutlet>
     </>
   );
 };

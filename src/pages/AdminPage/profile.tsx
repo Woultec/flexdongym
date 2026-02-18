@@ -29,6 +29,7 @@ import {
   createOutline,
 } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "./common.css";
 import "./profile.css";
 
@@ -42,6 +43,7 @@ interface AdminProfile {
 
 const Profile: React.FC = () => {
   const history = useHistory();
+  const { logout } = useAuth();
   const [present] = useIonToast();
 
   const [profile, setProfile] = useState<AdminProfile>({
@@ -86,7 +88,8 @@ const Profile: React.FC = () => {
     });
 
     setTimeout(() => {
-      history.push("/");
+      logout();
+      window.location.href = "/";
     }, 1500);
   };
 

@@ -33,7 +33,7 @@ const AdminNavbar: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    history.push('/');
+    window.location.href = '/';
   };
 
   const menuItems = [
@@ -45,6 +45,10 @@ const AdminNavbar: React.FC = () => {
     { title: 'Pricing', path: '/admin/price-edit', icon: cashOutline },
     { title: 'Profile', path: '/admin/profile', icon: settingsOutline },
   ];
+
+  const handleNavigate = (path: string) => {
+    history.push(path);
+  };
 
   return (
     <IonMenu contentId="admin-content" type="overlay" className="admin-menu">
@@ -66,8 +70,7 @@ const AdminNavbar: React.FC = () => {
             <IonMenuToggle key={index} autoHide={false}>
               <IonItem
                 button
-                routerLink={item.path}
-                routerDirection="none"
+                onClick={() => handleNavigate(item.path)}
                 detail={false}
                 className="menu-item"
               >
