@@ -28,7 +28,7 @@ const EmployeeNavbar: React.FC = () => {
         <IonLabel>Dashboard</IonLabel>
       </IonTabButton>
 
-      <IonTabButton tab="members" href="/employee/members">
+      <IonTabButton tab="members" onClick={() => history.push("/employee/members")}>
         <IonIcon icon={peopleOutline} />
         <IonLabel>Members</IonLabel>
       </IonTabButton>

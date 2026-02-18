@@ -20,6 +20,8 @@ import {
   IonSelectOption,
   IonCard,
   IonCardContent,
+  IonCardTitle,
+  IonText,
   IonBadge,
   IonAvatar,
 } from "@ionic/react";
@@ -65,6 +67,18 @@ const Customers: React.FC = () => {
     joinDate: new Date().toISOString().split("T")[0],
   });
 
+  const openAddModal = () => {
+    setEditingMember(null);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      membershipType: "monthly",
+      joinDate: new Date().toISOString().split("T")[0],
+    });
+    setShowModal(true);
+  };
+
   // Mock data - replace with actual data from your backend
   const [members, setMembers] = useState<Member[]>([
     {
@@ -99,23 +113,12 @@ const Customers: React.FC = () => {
     },
   ]);
 
-  const filteredMembers = members.filter((member) =>
-    member.name.toLowerCase().includes(searchText.toLowerCase()) ||
-    member.email.toLowerCase().includes(searchText.toLowerCase()) ||
-    member.phone.includes(searchText)
+  const filteredMembers = members.filter(
+    (member) =>
+      member.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      member.email.toLowerCase().includes(searchText.toLowerCase()) ||
+      member.phone.includes(searchText)
   );
-
-  const handleAddMember = () => {
-    setEditingMember(null);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      membershipType: "monthly",
-      joinDate: new Date().toISOString().split("T")[0],
-    });
-    setShowModal(true);
-  };
 
   const handleEditMember = (member: Member) => {
     setEditingMember(member);
@@ -141,7 +144,13 @@ const Customers: React.FC = () => {
       setMembers(
         members.map((m) =>
           m.id === editingMember.id
-            ? { ...m, ...formData, membershipType: formData.membershipType.charAt(0).toUpperCase() + formData.membershipType.slice(1) }
+            ? {
+                ...m,
+                ...formData,
+                membershipType:
+                  formData.membershipType.charAt(0).toUpperCase() +
+                  formData.membershipType.slice(1),
+              }
             : m
         )
       );
@@ -150,9 +159,14 @@ const Customers: React.FC = () => {
       const newMember: Member = {
         id: Math.max(...members.map((m) => m.id), 0) + 1,
         ...formData,
-        membershipType: formData.membershipType.charAt(0).toUpperCase() + formData.membershipType.slice(1),
+        membershipType:
+          formData.membershipType.charAt(0).toUpperCase() +
+          formData.membershipType.slice(1),
         status: "Active",
-        expiryDate: calculateExpiryDate(formData.joinDate, formData.membershipType),
+        expiryDate: calculateExpiryDate(
+          formData.joinDate,
+          formData.membershipType
+        ),
       };
       setMembers([...members, newMember]);
     }
@@ -197,6 +211,23 @@ const Customers: React.FC = () => {
     <IonPage>
       <AdminHeader title="Members Management" />
       <IonContent className="customers-content">
+        <IonCard className="employee-header-card">
+          <div className="employee-header-content">
+            <div>
+              <IonCardTitle>Members</IonCardTitle>
+              <IonText color="medium">
+                <p className="employee-subtitle">
+                  Manage Member accounts, Expiry, and Membership types
+                </p>
+              </IonText>
+            </div>
+            <IonButton onClick={openAddModal} color="primary">
+              <IonIcon slot="start" icon={addOutline} />
+              Add Members
+            </IonButton>
+          </div>
+        </IonCard>
+
         <div className="customers-container">
           {/* Search Bar */}
           <div className="search-section">
@@ -240,8 +271,12 @@ const Customers: React.FC = () => {
                       <IonBadge color={getStatusColor(member.status)}>
                         {member.status}
                       </IonBadge>
-                      <span className="membership-type">{member.membershipType}</span>
-                      <span className="expiry-date">Expires: {member.expiryDate}</span>
+                      <span className="membership-type">
+                        {member.membershipType}
+                      </span>
+                      <span className="expiry-date">
+                        Expires: {member.expiryDate}
+                      </span>
                     </div>
                   </IonLabel>
                   <div className="member-actions" slot="end">
@@ -277,7 +312,7 @@ const Customers: React.FC = () => {
 
           {/* Floating Action Button */}
           <IonFab vertical="bottom" horizontal="end" slot="fixed">
-            <IonFabButton color="primary" onClick={handleAddMember}>
+            <IonFabButton color="primary" onClick={openAddModal}>
               <IonIcon icon={addOutline} />
             </IonFabButton>
           </IonFab>
@@ -286,7 +321,9 @@ const Customers: React.FC = () => {
           <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
             <IonHeader>
               <IonToolbar color="primary">
-                <IonTitle>{editingMember ? "Edit Member" : "Add New Member"}</IonTitle>
+                <IonTitle>
+                  {editingMember ? "Edit Member" : "Add New Member"}
+                </IonTitle>
                 <IonButtons slot="end">
                   <IonButton onClick={() => setShowModal(false)}>
                     <IonIcon slot="icon-only" icon={closeOutline} />
@@ -339,7 +376,10 @@ const Customers: React.FC = () => {
                   <IonSelect
                     value={formData.membershipType}
                     onIonChange={(e) =>
-                      setFormData({ ...formData, membershipType: e.detail.value })
+                      setFormData({
+                        ...formData,
+                        membershipType: e.detail.value,
+                      })
                     }
                     className="form-select"
                   >
@@ -374,7 +414,9 @@ const Customers: React.FC = () => {
                     expand="block"
                     color="primary"
                     onClick={handleSaveMember}
-                    disabled={!formData.name || !formData.email || !formData.phone}
+                    disabled={
+                      !formData.name || !formData.email || !formData.phone
+                    }
                   >
                     {editingMember ? "Update Member" : "Add Member"}
                   </IonButton>
@@ -384,7 +426,10 @@ const Customers: React.FC = () => {
           </IonModal>
 
           {/* QR Code Modal */}
-          <IonModal isOpen={showQRModal} onDidDismiss={() => setShowQRModal(false)}>
+          <IonModal
+            isOpen={showQRModal}
+            onDidDismiss={() => setShowQRModal(false)}
+          >
             <IonHeader>
               <IonToolbar color="primary">
                 <IonTitle>Member QR Code</IonTitle>
@@ -406,7 +451,9 @@ const Customers: React.FC = () => {
                 </div>
                 <div className="qr-code-placeholder">
                   <IonIcon icon={qrCodeOutline} className="qr-icon" />
-                  <p className="qr-placeholder-text">QR Code will be generated here</p>
+                  <p className="qr-placeholder-text">
+                    QR Code will be generated here
+                  </p>
                   <p className="qr-id">Member ID: {selectedMember?.id}</p>
                 </div>
                 <IonButton expand="block" color="primary" className="download-btn">

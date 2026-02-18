@@ -22,9 +22,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({ title, showMenuButton = true 
           <IonButton>
             <IonIcon slot="icon-only" icon={notificationsOutline} />
           </IonButton>
-          <IonButton routerLink="/admin/profile">
-            <IonIcon slot="icon-only" icon={personCircleOutline} />
-          </IonButton>
         </IonButtons>
       </IonToolbar>
     </IonHeader>

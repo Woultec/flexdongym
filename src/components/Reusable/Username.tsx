@@ -24,6 +24,7 @@ const Username: React.FC<UsernameProps> = ({
       <IonItem className={error ? 'ion-invalid' : ''}>
         <IonIcon icon={personOutline} slot="start" color="medium" />
         <IonLabel position="floating">Username {required && '*'}</IonLabel>
+        <br></br>
         <IonInput
           type="text"
           value={value}

@@ -10,6 +10,51 @@
   padding-bottom: 80px;
 }
 
+/* ── Header Card ── */
+.employee-header-card {
+  margin: 16px 16px 0 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  background: linear-gradient(135deg, #1B2E4B 0%, #2ECC71 100%);
+  overflow: hidden;
+}
+
+.employee-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.employee-header-content ion-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.employee-subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.80);
+  margin: 0;
+}
+
+.employee-header-content ion-button {
+  --background: #ffffff;
+  --color: #1B2E4B;
+  --border-radius: 10px;
+  --box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.employee-header-content ion-button:hover {
+  --background: #f0f4ff;
+}
+
 /* Search Section */
 .search-section {
   margin-bottom: 20px;
@@ -251,6 +296,24 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .employee-header-card {
+    margin: 12px 12px 0 12px;
+  }
+
+  .employee-header-content {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .employee-header-content ion-card-title {
+    font-size: 18px;
+  }
+
+  .employee-header-content ion-button {
+    width: 100%;
+  }
+
   .customers-container {
     padding: 12px;
     padding-bottom: 80px;

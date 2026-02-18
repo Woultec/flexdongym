@@ -28,6 +28,7 @@ const Password: React.FC<PasswordProps> = ({
       <IonItem className={error ? 'ion-invalid' : ''}>
         <IonIcon icon={lockClosedOutline} slot="start" color="medium" />
         <IonLabel position="floating">{label} {required && '*'}</IonLabel>
+        <br></br>
         <IonInput
           type={showPassword ? 'text' : 'password'}
           value={value}
