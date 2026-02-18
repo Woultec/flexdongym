@@ -1,0 +1,218 @@
+/* Price Edit Page Styles */
+
+.pricing-header {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--gym-bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.pricing-row {
+  row-gap: var(--spacing-lg);
+}
+
+/* Pricing Cards */
+.pricing-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  background: var(--gym-bg-primary);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.pricing-card-header {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--gym-primary), var(--gym-primary-light));
+  color: white;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.pricing-type-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pricing-card-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  color: white;
+  margin: var(--spacing-sm) 0;
+}
+
+.pricing-description {
+  margin: var(--spacing-sm) 0 0;
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: var(--line-height-normal);
+}
+
+/* Price Input */
+.price-input-item {
+  --background: transparent;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+.price-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--gym-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.price-input {
+  --background: var(--gym-bg-secondary);
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gym-border-light);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--spacing-xs);
+}
+
+.price-display {
+  text-align: center;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--gym-primary);
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid var(--gym-border-light);
+  margin-top: var(--spacing-md);
+}
+
+/* Actions Section */
+.pricing-actions {
+  margin: var(--spacing-xl) 0;
+}
+
+.actions-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.action-buttons {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.save-button,
+.reset-button {
+  font-weight: var(--font-weight-semibold);
+  --border-radius: var(--radius-md);
+  min-height: 48px;
+}
+
+.unsaved-changes-text {
+  margin: var(--spacing-md) 0 0;
+  text-align: center;
+  color: var(--gym-warning);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Summary Card */
+.summary-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--spacing-lg);
+}
+
+.summary-list {
+  display: grid;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--gym-bg-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.summary-item:hover {
+  background: var(--gym-bg-tertiary);
+  transform: translateX(4px);
+}
+
+.summary-type {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gym-primary);
+}
+
+.summary-price {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--gym-accent);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background: linear-gradient(135deg, var(--gym-primary), var(--gym-primary-light));
+  border-radius: var(--radius-md);
+  color: white;
+}
+
+.total-label {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.total-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .pricing-header {
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .price-display {
+    font-size: var(--font-size-3xl);
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-total {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+}

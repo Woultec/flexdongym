@@ -1,15 +1,17 @@
-import React from "react";
-import { IonFooter, IonToolbar, IonTitle } from "@ionic/react";
-import "./footer.css";
+import React from 'react';
+import { IonFooter, IonToolbar } from '@ionic/react';
+import './footer.css';
 
-const Footer: React.FC = () => {
+const EmployeeFooter: React.FC = () => {
   return (
     <IonFooter className="employee-footer">
       <IonToolbar>
-        <IonTitle size="small">Gym Management System</IonTitle>
+        <div className="footer-content">
+          <p>© 2024 Flex Don Gym - Employee Portal</p>
+        </div>
       </IonToolbar>
     </IonFooter>
   );
 };
 
-export default Footer;
+export default EmployeeFooter;

@@ -1,15 +1,34 @@
-import React from "react";
-import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
-import "./Header.css";
+import React from 'react';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/react';
+import { personCircleOutline, qrCodeOutline } from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import './Header.css';
 
-const Header: React.FC = () => {
+interface EmployeeHeaderProps {
+  title: string;
+  showQRButton?: boolean;
+}
+
+const EmployeeHeader: React.FC<EmployeeHeaderProps> = ({ title, showQRButton = true }) => {
+  const history = useHistory();
+
   return (
     <IonHeader className="employee-header">
       <IonToolbar color="primary">
-        <IonTitle>Employee</IonTitle>
+        <IonTitle className="employee-header-title">{title}</IonTitle>
+        <IonButtons slot="end">
+          {showQRButton && (
+            <IonButton onClick={() => history.push('/employee/qr-scanner')}>
+              <IonIcon slot="icon-only" icon={qrCodeOutline} />
+            </IonButton>
+          )}
+          <IonButton routerLink="/employee/dashboard">
+            <IonIcon slot="icon-only" icon={personCircleOutline} />
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
   );
 };
 
-export default Header;
+export default EmployeeHeader;

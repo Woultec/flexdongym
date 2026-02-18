@@ -1,49 +1,54 @@
-import React, { useState } from "react";
-import "./StartingPage.css";
-import { Button } from "../../components/Reusable/Button";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { IonPage, IonContent, IonButton, IonIcon } from '@ionic/react';
+import { barbellOutline } from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import './StartingPage.css';
 
-const StartingPageAdmin: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+const StartingPage: React.FC = () => {
   const history = useHistory();
+  const { isAuthenticated, role } = useAuth();
 
-  const handleSubmit = () => {
-    if (!isLogin && password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+  useEffect(() => {
+    // Redirect if already authenticated
+    if (isAuthenticated) {
+      if (role === 'admin') {
+        history.push('/admin/dashboard');
+      } else if (role === 'employee') {
+        history.push('/employee/dashboard');
+      }
     }
-    console.log("Form submitted:", {
-      username,
-      password,
-      mode: isLogin ? "login" : "register",
-    });
+  }, [isAuthenticated, role, history]);
+
+  const handleGetStarted = () => {
+    history.push('/menu-admin');
   };
 
   return (
-    <div className="admin-login-container">
-      <div className="admin-main-container">
-        <div className="admin-image-group">
-          <img src="/dondon-logo.png" className="dondon-logo" alt="Dondon's Fitness Gym Logo" />
-          <h1 className="admin-gym-name">DONDON'S FITNESS GYM</h1>
+    <IonPage>
+      <IonContent className="starting-page" fullscreen>
+        <div className="splash-container">
+          <div className="logo-section">
+            <IonIcon icon={barbellOutline} className="app-logo" />
+            <h1 className="app-title">Flex Don Gym</h1>
+            <p className="app-tagline">Your Fitness, Our Priority</p>
+          </div>
+          
+          <div className="cta-section">
+            <IonButton
+              expand="block"
+              size="large"
+              onClick={handleGetStarted}
+              className="get-started-btn"
+            >
+              Get Started
+            </IonButton>
+            <p className="version-text">Version 1.0.0</p>
+          </div>
         </div>
-        <div className="admin-button-group">
-          <Button
-            className="btn btn-signup"
-            type="button"
-            onClick={() => history.push("/menu-admin")}
-            aria-label="Get started with gym management system"
-          >
-            Get started
-          </Button>
-        </div>
-      </div>
-    </div>
+      </IonContent>
+    </IonPage>
   );
 };
 
-export default StartingPageAdmin;
+export default StartingPage;

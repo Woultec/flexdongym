@@ -1,15 +1,34 @@
-import React from "react";
-import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
-import "./header.css";
+import React from 'react';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, IonMenuButton } from '@ionic/react';
+import { personCircleOutline, notificationsOutline } from 'ionicons/icons';
+import './header.css';
 
-const Header: React.FC = () => {
+interface AdminHeaderProps {
+  title: string;
+  showMenuButton?: boolean;
+}
+
+const AdminHeader: React.FC<AdminHeaderProps> = ({ title, showMenuButton = true }) => {
   return (
     <IonHeader className="admin-header">
       <IonToolbar color="primary">
-        <IonTitle>Admin</IonTitle>
+        {showMenuButton && (
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
+        )}
+        <IonTitle className="admin-header-title">{title}</IonTitle>
+        <IonButtons slot="end">
+          <IonButton>
+            <IonIcon slot="icon-only" icon={notificationsOutline} />
+          </IonButton>
+          <IonButton routerLink="/admin/profile">
+            <IonIcon slot="icon-only" icon={personCircleOutline} />
+          </IonButton>
+        </IonButtons>
       </IonToolbar>
     </IonHeader>
   );
 };
 
-export default Header;
+export default AdminHeader;

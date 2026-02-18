@@ -2,106 +2,106 @@
 http://ionicframework.com/docs/theming/ */
 
 :root {
-  /* Primary brand color */
-  --ion-color-primary: #04354F;
-  --ion-color-primary-rgb: 4, 53, 79;
+  /* Primary - Deep Navy (Buttons/Header) #1B2E4B */
+  --ion-color-primary: #1B2E4B;
+  --ion-color-primary-rgb: 27, 46, 75;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #033047;
-  --ion-color-primary-tint: #1d4a61;
+  --ion-color-primary-shade: #182842;
+  --ion-color-primary-tint: #32445d;
 
-  /** secondary - Accent Blue **/
-  --ion-color-secondary: #0084c9;
-  --ion-color-secondary-rgb: 0, 132, 201;
+  /** secondary - Bright Blue (Accent/Links) #2E86DE **/
+  --ion-color-secondary: #2E86DE;
+  --ion-color-secondary-rgb: 46, 134, 222;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0074b1;
-  --ion-color-secondary-tint: #1a90ce;
+  --ion-color-secondary-shade: #2876c3;
+  --ion-color-secondary-tint: #4392e1;
 
-  /** success **/
-  --ion-color-success: #28a745;
-  --ion-color-success-rgb: 40, 167, 69;
+  /** success - Active Badge Green #2ECC71 **/
+  --ion-color-success: #2ECC71;
+  --ion-color-success-rgb: 46, 204, 113;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
-  --ion-color-success-shade: #24923e;
-  --ion-color-success-tint: #3eb158;
+  --ion-color-success-shade: #28b463;
+  --ion-color-success-tint: #43d17f;
 
-  /** warning **/
-  --ion-color-warning: #ffc107;
-  --ion-color-warning-rgb: 255, 193, 7;
+  /** warning - Orange (Low Stock) #F39C12 **/
+  --ion-color-warning: #F39C12;
+  --ion-color-warning-rgb: 243, 156, 18;
   --ion-color-warning-contrast: #000000;
   --ion-color-warning-contrast-rgb: 0, 0, 0;
-  --ion-color-warning-shade: #e0aa06;
-  --ion-color-warning-tint: #ffc720;
+  --ion-color-warning-shade: #d68910;
+  --ion-color-warning-tint: #f4a62a;
 
-  /** danger **/
-  --ion-color-danger: #dc3545;
-  --ion-color-danger-rgb: 220, 53, 69;
+  /** danger - Red (Expired/Error) #E74C3C **/
+  --ion-color-danger: #E74C3C;
+  --ion-color-danger-rgb: 231, 76, 60;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #c22e3c;
-  --ion-color-danger-tint: #e04958;
+  --ion-color-danger-shade: #cb4335;
+  --ion-color-danger-tint: #e95e50;
 
-  /** dark **/
-  --ion-color-dark: #0b2230;
-  --ion-color-dark-rgb: 11, 34, 48;
+  /** dark - Navy Text #1B2E4B **/
+  --ion-color-dark: #1B2E4B;
+  --ion-color-dark-rgb: 27, 46, 75;
   --ion-color-dark-contrast: #ffffff;
   --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #0a1e2a;
-  --ion-color-dark-tint: #233845;
+  --ion-color-dark-shade: #182842;
+  --ion-color-dark-tint: #32445d;
 
-  /** medium **/
-  --ion-color-medium: #4a5b65;
-  --ion-color-medium-rgb: 74, 91, 101;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #415059;
-  --ion-color-medium-tint: #5c6b74;
+  /** medium - Placeholder Text (Blue-grey) #9BADB7 **/
+  --ion-color-medium: #9BADB7;
+  --ion-color-medium-rgb: 155, 173, 183;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #8898a1;
+  --ion-color-medium-tint: #a5b5be;
 
-  /** light **/
-  --ion-color-light: #f8f9fa;
-  --ion-color-light-rgb: 248, 249, 250;
+  /** light - Page Background (Light grey-blue) #F0F4F8 **/
+  --ion-color-light: #F0F4F8;
+  --ion-color-light-rgb: 240, 244, 248;
   --ion-color-light-contrast: #000000;
   --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #dadcdd;
-  --ion-color-light-tint: #f9fafb;
+  --ion-color-light-shade: #d3d7da;
+  --ion-color-light-tint: #f2f5f9;
 
   /* ========================================
-     CUSTOM GYM DESIGN SYSTEM
+     FLEX DON GYM DESIGN SYSTEM
      ======================================== */
   
   /* Brand Colors */
-  --gym-primary: #04354f;
-  --gym-primary-light: #1d4961;
-  --gym-primary-dark: #032e45;
-  --gym-accent: #0084c9;
-  --gym-accent-light: #1a90ce;
-  --gym-accent-dark: #0074b1;
+  --gym-primary: #1B2E4B;
+  --gym-primary-light: #32445d;
+  --gym-primary-dark: #182842;
+  --gym-accent: #2E86DE;
+  --gym-accent-light: #4392e1;
+  --gym-accent-dark: #2876c3;
 
   /* Neutral Colors */
-  --gym-bg-primary: #ffffff;
-  --gym-bg-secondary: #f8f9fa;
-  --gym-bg-tertiary: #e9ecef;
-  --gym-bg-light: #f4f5f6;
-  --gym-border: #dee2e6;
-  --gym-border-light: #e9ecef;
-  --gym-text-primary: #0b2230;
-  --gym-text-secondary: #4a5b65;
-  --gym-text-muted: #6c757d;
+  --gym-bg-primary: #FFFFFF;
+  --gym-bg-secondary: #F0F4F8;
+  --gym-bg-tertiary: #E2E8F0;
+  --gym-bg-light: #F0F4F8;
+  --gym-border: #E2E8F0;
+  --gym-border-light: #F0F4F8;
+  --gym-text-primary: #1B2E4B;
+  --gym-text-secondary: #9BADB7;
+  --gym-text-muted: #9BADB7;
 
   /* Status Colors */
-  --gym-success: #28a745;
-  --gym-success-bg: #d4edda;
-  --gym-success-border: #c3e6cb;
-  --gym-warning: #ffc107;
-  --gym-warning-bg: #fff3cd;
-  --gym-warning-border: #ffeaa7;
-  --gym-danger: #dc3545;
-  --gym-danger-bg: #f8d7da;
-  --gym-danger-border: #f5c6cb;
-  --gym-info: #0084c9;
-  --gym-info-bg: #d1ecf1;
-  --gym-info-border: #bee5eb;
+  --gym-success: #2ECC71;
+  --gym-success-bg: #d4f4dd;
+  --gym-success-border: #b8eed0;
+  --gym-warning: #F39C12;
+  --gym-warning-bg: #fef3e0;
+  --gym-warning-border: #fde8c4;
+  --gym-danger: #E74C3C;
+  --gym-danger-bg: #fce4e1;
+  --gym-danger-border: #f9d2ce;
+  --gym-info: #2E86DE;
+  --gym-info-bg: #e0f0fb;
+  --gym-info-border: #c7e4f8;
 
   /* Spacing System (8px base) */
   --spacing-xs: 4px;

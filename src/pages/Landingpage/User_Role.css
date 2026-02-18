@@ -1,85 +1,121 @@
-/* User Role Selection Page */
-.login-register-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--gym-bg-secondary) 0%, var(--gym-bg-tertiary) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-md);
+.role-selection-page {
+  --background: var(--gym-bg-secondary, #F0F4F8);
 }
 
-.menu-main-container {
-  background: var(--gym-bg-primary);
-  padding: var(--spacing-2xl);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
-  width: 100%;
-  max-width: var(--max-width-form);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xl);
-  align-items: center;
+.role-container {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.menu-main-container h1 {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--gym-primary);
-  margin: 0 0 var(--spacing-md) 0;
+.role-header {
   text-align: center;
+  margin-bottom: 40px;
 }
 
-.menu-main-container button {
-  width: 100%;
-  max-width: 300px;
-  padding: var(--spacing-lg) var(--spacing-xl);
-  min-height: 64px;
-  background: var(--gym-primary);
-  color: white;
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-xl);
-  border: none;
-  border-radius: var(--radius-xl);
+.role-header h1 {
+  font-size: var(--fdg-font-xxl, 32px);
+  font-weight: var(--fdg-font-bold, 700);
+  color: var(--gym-primary, #1B2E4B);
+  margin: 0 0 12px 0;
+}
+
+.role-header p {
+  font-size: var(--fdg-font-lg, 18px);
+  color: var(--fdg-text-secondary, #9BADB7);
+  margin: 0;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.role-card {
   cursor: pointer;
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border-radius: var(--fdg-radius-lg, 12px);
+  box-shadow: var(--fdg-shadow, 0 2px 8px rgba(27, 46, 75, 0.1));
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--fdg-shadow-lg, 0 4px 16px rgba(27, 46, 75, 0.15));
+}
+
+.role-card ion-card-header {
+  text-align: center;
+  padding: 32px 20px 20px;
+}
+
+.role-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto 16px;
 }
 
-.menu-main-container button:hover {
-  background: var(--gym-primary-light);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+.role-icon-wrapper ion-icon {
+  font-size: 48px;
+  color: white;
 }
 
-.menu-main-container button:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+.admin-icon {
+  background: linear-gradient(135deg, var(--gym-primary, #1B2E4B), var(--gym-primary-light, #32445d));
 }
 
-.menu-main-container button:nth-child(2) {
-  background: var(--gym-accent);
+.employee-icon {
+  background: linear-gradient(135deg, var(--gym-accent, #2E86DE), var(--gym-accent-light, #4392e1));
 }
 
-.menu-main-container button:nth-child(2):hover {
-  background: var(--gym-accent-light);
+.role-card ion-card-title {
+  font-size: var(--fdg-font-xl, 24px);
+  font-weight: var(--fdg-font-bold, 700);
+  color: var(--gym-primary, #1B2E4B);
+  margin: 0;
 }
 
-@media (max-width: 480px) {
-  .menu-main-container {
-    padding: var(--spacing-xl);
-  }
-  
-  .menu-main-container h1 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  .menu-main-container button {
-    font-size: var(--font-size-lg);
-    min-height: 56px;
-  }
+.role-card ion-card-content p {
+  text-align: center;
+  color: var(--fdg-text-secondary, #9BADB7);
+  margin: 0 0 20px 0;
+}
+
+.role-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.role-features li {
+  padding: 8px 0;
+  color: var(--fdg-text-primary, #1B2E4B);
+  position: relative;
+  padding-left: 24px;
+}
+
+.role-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gym-success, #2ECC71);
+  font-weight: var(--fdg-font-bold, 700);
+}
+
+.login-modal-content {
+  --background: var(--gym-bg-secondary, #F0F4F8);
+}
+
+.login-form {
+  padding: 32px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login-actions {
+  margin-top: 32px;
 }

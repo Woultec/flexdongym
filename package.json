@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "vite",
-    "ionic:serve": "vite",
+    "start": "vite --port 8001",
+    "ionic:serve": "vite --port 8001",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test.e2e": "cypress run",
@@ -32,9 +32,11 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-native-svg": "^15.15.0",
+    "qrcode": "^1.5.3",
     "react-qr-code": "^2.0.18",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
+    "recharts": "^2.10.3",
     "serve": "^14.2.5"
   },
   "devDependencies": {
@@ -42,6 +44,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19.2.7",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-legacy": "^5.0.0",

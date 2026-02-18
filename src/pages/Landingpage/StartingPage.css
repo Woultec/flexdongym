@@ -1,128 +1,76 @@
-/* Centered container for the entire component */
-.admin-login-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--gym-bg-secondary) 0%, var(--gym-bg-tertiary) 100%);
+.starting-page {
+  --background: linear-gradient(135deg, var(--gym-primary, #1B2E4B) 0%, var(--gym-primary-light, #32445d) 100%);
+}
+
+.splash-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-md);
-}
-
-/* Main container */
-.admin-main-container {
-  background: var(--gym-bg-primary);
-  padding: var(--spacing-2xl) var(--spacing-xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xl);
-  width: 100%;
-  max-width: var(--max-width-form);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
-  min-height: 500px;
-}
-
-/* Image group */
-.admin-image-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-.dondon-logo {
-  max-width: 120px;
-  height: auto;
-  margin-bottom: var(--spacing-sm);
-}
-
-.admin-gym-name {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-extrabold);
+  height: 100%;
+  padding: 60px 32px 40px;
   text-align: center;
-  color: var(--gym-primary);
-  line-height: var(--line-height-tight);
-  margin: 0;
 }
 
-/* Button group */
-.admin-button-group {
-  width: 100%;
+.logo-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  align-items: center;
-}
-
-.btn-signup {
-  width: 100%;
-  max-width: 320px;
-  padding: var(--spacing-md) var(--spacing-xl);
-  min-height: 56px;
-  background: var(--gym-primary);
-  color: white;
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-lg);
-  border: none;
-  border-radius: var(--radius-xl);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-md);
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.btn-signup:hover {
-  background: var(--gym-primary-light);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+.app-logo {
+  font-size: 120px;
+  color: white;
+  margin-bottom: 24px;
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.btn-signup:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.btn-signup:focus-visible {
-  outline: 3px solid var(--gym-accent);
-  outline-offset: 2px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .admin-main-container {
-    padding: var(--spacing-xl) var(--spacing-lg);
-    min-height: auto;
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  .admin-gym-name {
-    font-size: var(--font-size-xl);
-  }
-  
-  .btn-signup {
-    font-size: var(--font-size-base);
-    min-height: 52px;
-  }
-  
-  .dondon-logo {
-    max-width: 100px;
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 }
 
-@media (min-width: 768px) {
-  .admin-main-container {
-    padding: var(--spacing-3xl) var(--spacing-2xl);
-  }
-  
-  .admin-gym-name {
-    font-size: var(--font-size-3xl);
-  }
+.app-title {
+  font-size: var(--fdg-font-xxl, 32px);
+  font-weight: var(--fdg-font-bold, 700);
+  color: white;
+  margin: 0 0 12px 0;
+  letter-spacing: 1px;
+}
+
+.app-tagline {
+  font-size: var(--fdg-font-lg, 18px);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: var(--fdg-font-normal, 400);
+}
+
+.cta-section {
+  width: 100%;
+  max-width: 400px;
+}
+
+.get-started-btn {
+  --background: white;
+  --color: var(--gym-primary, #1B2E4B);
+  --border-radius: var(--fdg-radius-lg, 12px);
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  font-weight: var(--fdg-font-bold, 700);
+  font-size: var(--fdg-font-lg, 18px);
+  height: 56px;
+  margin-bottom: 16px;
+}
+
+.version-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--fdg-font-sm, 14px);
+  margin: 0;
 }

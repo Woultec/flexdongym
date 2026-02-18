@@ -1,17 +1,19 @@
-/* Admin Footer Styles */
 .admin-footer {
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid var(--fdg-border-color, #E2E8F0);
 }
 
 .admin-footer ion-toolbar {
-  --background: var(--gym-bg-primary);
-  --border-color: var(--gym-border);
-  --padding-top: var(--spacing-xs);
-  --padding-bottom: var(--spacing-xs);
+  --background: var(--gym-bg-primary, #FFFFFF);
+  --min-height: 48px;
 }
 
-.admin-footer ion-title {
-  font-size: var(--font-size-xs);
-  color: var(--gym-text-muted);
+.footer-content {
   text-align: center;
+  padding: 8px 16px;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: var(--fdg-font-xs, 12px);
+  color: var(--fdg-text-secondary, #9BADB7);
 }

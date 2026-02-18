@@ -11,7 +11,7 @@ export default defineConfig({
     legacy()
   ],
   server: {
-    port: 8100,
+    port: 8001,
     host: 'localhost'
   },
   test: {

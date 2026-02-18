@@ -1,30 +1,54 @@
-import React from "react";
-import { IonFooter, IonToolbar, IonButtons, IonButton, IonIcon } from "@ionic/react";
-import { qrCodeOutline, cardOutline, personOutline } from "ionicons/icons";
-import "./Navbar.css";
+import React from 'react';
+import { IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import {
+  speedometerOutline,
+  peopleOutline,
+  qrCodeOutline,
+  cartOutline,
+  personAddOutline,
+  logOutOutline,
+} from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import './Navbar.css';
 
-/**
- * Minimal responsive footer nav for employee.
- * (You can replace with tabs later; this just ensures the file is a valid module.)
- */
-const Navbar: React.FC = () => {
+const EmployeeNavbar: React.FC = () => {
+  const history = useHistory();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    history.push('/');
+  };
+
   return (
-    <IonFooter>
-      <IonToolbar>
-        <IonButtons slot="start">
-          <IonButton routerLink="/employee/qr">
-            <IonIcon icon={qrCodeOutline} slot="icon-only" />
-          </IonButton>
-          <IonButton routerLink="/employee/status-member">
-            <IonIcon icon={personOutline} slot="icon-only" />
-          </IonButton>
-          <IonButton routerLink="/employee/pos">
-            <IonIcon icon={cardOutline} slot="icon-only" />
-          </IonButton>
-        </IonButtons>
-      </IonToolbar>
-    </IonFooter>
+    <IonTabBar slot="bottom" className="employee-tabbar">
+      <IonTabButton tab="dashboard" href="/employee/dashboard">
+        <IonIcon icon={speedometerOutline} />
+        <IonLabel>Dashboard</IonLabel>
+      </IonTabButton>
+
+      <IonTabButton tab="members" href="/employee/members">
+        <IonIcon icon={peopleOutline} />
+        <IonLabel>Members</IonLabel>
+      </IonTabButton>
+
+      <IonTabButton tab="qr-scanner" href="/employee/qr-scanner" className="qr-tab-button">
+        <IonIcon icon={qrCodeOutline} />
+        <IonLabel>Scan QR</IonLabel>
+      </IonTabButton>
+
+      <IonTabButton tab="pos" href="/employee/pos">
+        <IonIcon icon={cartOutline} />
+        <IonLabel>POS</IonLabel>
+      </IonTabButton>
+
+      <IonTabButton tab="register" href="/employee/status-member">
+        <IonIcon icon={personAddOutline} />
+        <IonLabel>Register</IonLabel>
+      </IonTabButton>
+    </IonTabBar>
   );
 };
 
-export default Navbar;
+export default EmployeeNavbar;

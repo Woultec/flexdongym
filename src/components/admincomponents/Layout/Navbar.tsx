@@ -1,43 +1,97 @@
-import React from "react";
+import React from 'react';
 import {
   IonMenu,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
   IonContent,
   IonList,
   IonItem,
+  IonIcon,
   IonLabel,
-} from "@ionic/react";
-import "./Navbar.css";
+  IonMenuToggle,
+  IonFooter,
+  IonButton,
+} from '@ionic/react';
+import {
+  speedometerOutline,
+  peopleOutline,
+  personOutline,
+  cashOutline,
+  barbellOutline,
+  cartOutline,
+  settingsOutline,
+  logOutOutline,
+} from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
+import './Navbar.css';
 
-const Navbar: React.FC<{ contentId?: string }> = ({ contentId = "admin-content" }) => {
+const AdminNavbar: React.FC = () => {
+  const history = useHistory();
+  const { logout, user } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    history.push('/');
+  };
+
+  const menuItems = [
+    { title: 'Dashboard', path: '/admin/dashboard', icon: speedometerOutline },
+    { title: 'Members', path: '/admin/customers', icon: peopleOutline },
+    { title: 'Employees', path: '/admin/employees', icon: personOutline },
+    { title: 'Products', path: '/admin/products', icon: cartOutline },
+    { title: 'Equipment', path: '/admin/equipment', icon: barbellOutline },
+    { title: 'Pricing', path: '/admin/price-edit', icon: cashOutline },
+    { title: 'Profile', path: '/admin/profile', icon: settingsOutline },
+  ];
+
   return (
-    <IonMenu contentId={contentId} type="overlay">
+    <IonMenu contentId="admin-content" type="overlay" className="admin-menu">
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>Flex Don Gym</IonTitle>
+        </IonToolbar>
+      </IonHeader>
       <IonContent>
-        <IonList>
-          <IonItem routerLink="/admin/dashboard" routerDirection="root">
-            <IonLabel>Dashboard</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/customers" routerDirection="root">
-            <IonLabel>Customers</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/employees" routerDirection="root">
-            <IonLabel>Employees</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/products" routerDirection="root">
-            <IonLabel>Products</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/equipment" routerDirection="root">
-            <IonLabel>Equipment</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/priceedit" routerDirection="root">
-            <IonLabel>Price Edit</IonLabel>
-          </IonItem>
-          <IonItem routerLink="/admin/profile" routerDirection="root">
-            <IonLabel>Profile</IonLabel>
-          </IonItem>
+        <div className="menu-user-info">
+          <IonIcon icon={personOutline} className="user-avatar" />
+          <div className="user-details">
+            <h3>{user?.fullName || user?.username}</h3>
+            <p>Administrator</p>
+          </div>
+        </div>
+        <IonList className="menu-list">
+          {menuItems.map((item, index) => (
+            <IonMenuToggle key={index} autoHide={false}>
+              <IonItem
+                button
+                routerLink={item.path}
+                routerDirection="none"
+                detail={false}
+                className="menu-item"
+              >
+                <IonIcon slot="start" icon={item.icon} />
+                <IonLabel>{item.title}</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          ))}
         </IonList>
       </IonContent>
+      <IonFooter className="menu-footer">
+        <IonButton
+          expand="block"
+          fill="clear"
+          color="danger"
+          onClick={handleLogout}
+          className="logout-button"
+        >
+          <IonIcon slot="start" icon={logOutOutline} />
+          Logout
+        </IonButton>
+      </IonFooter>
     </IonMenu>
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

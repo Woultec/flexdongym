@@ -1,35 +1,74 @@
-/* Admin Navbar Styles */
-ion-menu ion-content {
-  --background: var(--gym-bg-primary);
+.admin-menu {
+  --width: 280px;
 }
 
-ion-menu ion-list {
-  background: transparent;
-  padding: var(--spacing-md) 0;
+.menu-user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 16px;
+  background: linear-gradient(135deg, var(--gym-primary, #1B2E4B) 0%, var(--gym-primary-light, #32445d) 100%);
+  color: white;
+  margin-bottom: 8px;
 }
 
-ion-menu ion-item {
-  --background: transparent;
-  --background-hover: var(--gym-bg-secondary);
-  --background-activated: var(--gym-accent);
-  --color: var(--gym-text-primary);
-  --color-activated: white;
-  --padding-start: var(--spacing-lg);
-  --padding-end: var(--spacing-lg);
-  --border-radius: var(--radius-md);
-  margin: var(--spacing-xs) var(--spacing-md);
-  font-weight: var(--font-weight-medium);
-  transition: all var(--transition-base);
+.user-avatar {
+  font-size: 56px;
+  color: white;
+  opacity: 0.9;
 }
 
-ion-menu ion-item:hover {
-  transform: translateX(4px);
+.user-details h3 {
+  margin: 0;
+  font-size: var(--fdg-font-lg, 18px);
+  font-weight: var(--fdg-font-bold, 700);
+  color: white;
 }
 
-ion-menu ion-item.ion-activated {
-  font-weight: var(--font-weight-bold);
+.user-details p {
+  margin: 4px 0 0 0;
+  font-size: var(--fdg-font-sm, 14px);
+  color: rgba(255, 255, 255, 0.8);
 }
 
-ion-menu ion-label {
-  font-size: var(--font-size-base);
+.menu-list {
+  padding: 8px 0;
+}
+
+.menu-item {
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  margin: 4px 8px;
+  border-radius: var(--fdg-radius-md, 8px);
+  font-weight: var(--fdg-font-medium, 500);
+}
+
+.menu-item ion-icon {
+  font-size: 22px;
+  margin-right: 12px;
+  color: var(--gym-primary, #1B2E4B);
+}
+
+.menu-item:hover {
+  --background: var(--gym-bg-secondary, #F0F4F8);
+}
+
+.menu-item.ion-activated {
+  --background: var(--gym-bg-secondary, #F0F4F8);
+  font-weight: var(--fdg-font-semibold, 600);
+}
+
+.menu-footer {
+  padding: 16px;
+  border-top: 1px solid var(--fdg-border-color, #E2E8F0);
+}
+
+.logout-button {
+  margin: 0;
+  --color: var(--ion-color-danger);
+  font-weight: var(--fdg-font-semibold, 600);
+}
+
+.logout-button ion-icon {
+  font-size: 20px;
 }
