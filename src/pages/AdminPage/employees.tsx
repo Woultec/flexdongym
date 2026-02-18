@@ -31,6 +31,7 @@ import {
   searchOutline,
   peopleOutline,
 } from "ionicons/icons";
+import AdminHeader from "../../components/admincomponents/Layout/header";
 import "./common.css";
 import "./employees.css";
 
@@ -191,11 +192,7 @@ const Employees: React.FC = () => {
 
   return (
     <IonPage className="admin-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Employees</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AdminHeader title="Employee Management" />
 
       <IonContent className="ion-padding">
         {/* Header Card */}

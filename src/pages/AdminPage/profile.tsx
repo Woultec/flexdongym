@@ -19,6 +19,7 @@ import {
   IonAvatar,
   useIonToast,
 } from "@ionic/react";
+import AdminHeader from "../../components/admincomponents/Layout/header";
 import {
   personOutline,
   mailOutline,
@@ -103,11 +104,7 @@ const Profile: React.FC = () => {
 
   return (
     <IonPage className="admin-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Admin Profile</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AdminHeader title="Admin Profile" />
 
       <IonContent className="ion-padding">
         {/* Profile Header */}

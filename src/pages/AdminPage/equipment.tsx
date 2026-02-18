@@ -24,6 +24,7 @@ import {
   IonText,
   IonBadge,
 } from "@ionic/react";
+import AdminHeader from "../../components/admincomponents/Layout/header";
 import "./common.css";
 import "./equipment.css";
 
@@ -194,11 +195,7 @@ const Equipment: React.FC = () => {
 
   return (
     <IonPage className="admin-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Equipment Management</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AdminHeader title="Equipment Management" />
 
       <IonContent className="ion-padding">
         {/* Header Section */}

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonCard,
   IonCardHeader,
@@ -20,7 +17,8 @@ import {
   IonIcon,
   useIonToast,
 } from "@ionic/react";
-import { saveOutline, refreshOutline } from "ionicons/icons";
+import AdminHeader from "../../components/admincomponents/Layout/header";
+import { saveOutline, refreshOutline, cashOutline } from "ionicons/icons";
 import "./common.css";
 import "./priceedit.css";
 
@@ -105,11 +103,7 @@ const PriceEdit: React.FC = () => {
 
   return (
     <IonPage className="admin-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Membership Pricing</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AdminHeader title="Membership Pricing" />
 
       <IonContent className="ion-padding">
         {/* Header Section */}

@@ -24,6 +24,7 @@ import {
   IonSegment,
   IonSegmentButton,
 } from "@ionic/react";
+import AdminHeader from "../../components/admincomponents/Layout/header";
 import {
   addOutline,
   createOutline,
@@ -242,11 +243,7 @@ const Products: React.FC = () => {
 
   return (
     <IonPage className="admin-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Products</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AdminHeader title="Products Management" />
 
       <IonContent className="ion-padding">
         {/* Header Card */}
