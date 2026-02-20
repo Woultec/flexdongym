@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { IonPage, IonContent, IonButton, IonIcon } from '@ionic/react';
-import { barbellOutline } from 'ionicons/icons';
+import { IonPage, IonContent, IonButton } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './StartingPage.css';
@@ -29,7 +28,7 @@ const StartingPage: React.FC = () => {
       <IonContent className="starting-page" fullscreen>
         <div className="splash-container">
           <div className="logo-section">
-            <IonIcon icon={barbellOutline} className="app-logo" />
+            <img src="/logo.png" alt="Flex Don Gym Logo" className="app-logo" />
             <h1 className="app-title">Flex Don Gym</h1>
             <p className="app-tagline">Your Fitness, Our Priority</p>
           </div>

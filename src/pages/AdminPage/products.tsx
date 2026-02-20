@@ -130,7 +130,6 @@ const Products: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Form state
   const [formData, setFormData] = useState({
     name: "",
     category: "",
@@ -142,14 +141,7 @@ const Products: React.FC = () => {
 
   const openAddModal = () => {
     setIsEditing(false);
-    setFormData({
-      name: "",
-      category: "",
-      price: "",
-      stock: "",
-      description: "",
-      sku: "",
-    });
+    setFormData({ name: "", category: "", price: "", stock: "", description: "", sku: "" });
     setShowModal(true);
   };
 
@@ -168,12 +160,7 @@ const Products: React.FC = () => {
   };
 
   const handleSave = () => {
-    if (
-      !formData.name ||
-      !formData.category ||
-      !formData.price ||
-      !formData.stock
-    ) {
+    if (!formData.name || !formData.category || !formData.price || !formData.stock) {
       alert("Please fill in all required fields");
       return;
     }
@@ -188,16 +175,12 @@ const Products: React.FC = () => {
     };
 
     if (isEditing && currentProduct) {
-      // Update existing product
       setProducts(
         products.map((prod) =>
-          prod.id === currentProduct.id
-            ? { ...currentProduct, ...productData }
-            : prod
+          prod.id === currentProduct.id ? { ...currentProduct, ...productData } : prod
         )
       );
     } else {
-      // Add new product
       const newProduct: Product = {
         id: Math.max(...products.map((p) => p.id)) + 1,
         ...productData,
@@ -259,7 +242,11 @@ const Products: React.FC = () => {
                 </IonText>
               </div>
               <IonButton onClick={openAddModal} color="primary">
-                <IonIcon slot="start" icon={addOutline} />
+                <IonIcon
+                  slot="start"
+                  icon={addOutline}
+                  style={{ fontSize: "20px", color: "#ffffff", display: "block" }}
+                />
                 Add Product
               </IonButton>
             </div>
@@ -270,26 +257,37 @@ const Products: React.FC = () => {
         <div className="product-stats">
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon">
-                <IonIcon icon={cubeOutline} />
+              <div className="stat-icon-wrapper default">
+                <IonIcon
+                  icon={cubeOutline}
+                  style={{ fontSize: "28px", color: "#1B2E4B", display: "block" }}
+                />
               </div>
               <div className="stat-value">{products.length}</div>
               <div className="stat-label">Total Products</div>
             </IonCardContent>
           </IonCard>
+
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon warning">
-                <IonIcon icon={warningOutline} />
+              <div className="stat-icon-wrapper warning">
+                <IonIcon
+                  icon={warningOutline}
+                  style={{ fontSize: "28px", color: "#F39C12", display: "block" }}
+                />
               </div>
               <div className="stat-value">{lowStockCount}</div>
               <div className="stat-label">Low Stock</div>
             </IonCardContent>
           </IonCard>
+
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon danger">
-                <IonIcon icon={warningOutline} />
+              <div className="stat-icon-wrapper danger">
+                <IonIcon
+                  icon={warningOutline}
+                  style={{ fontSize: "28px", color: "#E74C3C", display: "block" }}
+                />
               </div>
               <div className="stat-value">{outOfStockCount}</div>
               <div className="stat-label">Out of Stock</div>
@@ -311,10 +309,16 @@ const Products: React.FC = () => {
             className="view-toggle"
           >
             <IonSegmentButton value="grid">
-              <IonIcon icon={gridOutline} />
+              <IonIcon
+                icon={gridOutline}
+                style={{ fontSize: "20px", display: "block" }}
+              />
             </IonSegmentButton>
             <IonSegmentButton value="list">
-              <IonIcon icon={listOutline} />
+              <IonIcon
+                icon={listOutline}
+                style={{ fontSize: "20px", display: "block" }}
+              />
             </IonSegmentButton>
           </IonSegment>
         </div>
@@ -324,7 +328,10 @@ const Products: React.FC = () => {
           <IonCard>
             <IonCardContent>
               <div className="empty-state">
-                <IonIcon icon={cubeOutline} className="empty-state-icon" />
+                <IonIcon
+                  icon={cubeOutline}
+                  style={{ fontSize: "64px", color: "#adb5bd", display: "block", margin: "0 auto 16px" }}
+                />
                 <div className="empty-state-title">No products found</div>
                 <div className="empty-state-text">
                   {searchText
@@ -339,7 +346,7 @@ const Products: React.FC = () => {
             {filteredProducts.map((product) => {
               const stockStatus = getStockStatus(product.stock);
               return viewMode === "grid" ? (
-                // Grid View - Cards
+                // Grid View
                 <IonCard key={product.id} className="product-card">
                   <IonCardHeader>
                     <div className="product-card-header">
@@ -360,15 +367,13 @@ const Products: React.FC = () => {
                     <div className="product-info">
                       <div className="product-category">{product.category}</div>
                       {product.description && (
-                        <p className="product-description">
-                          {product.description}
-                        </p>
+                        <p className="product-description">{product.description}</p>
                       )}
                       <div className="product-details">
                         <div className="product-price">${product.price.toFixed(2)}</div>
                         <div className="product-stock">
                           <span className="stock-label">Stock:</span>
-                          <span className={`stock-value ${product.stock < 10 ? 'low' : ''}`}>
+                          <span className={`stock-value ${product.stock < 10 ? "low" : ""}`}>
                             {product.stock}
                           </span>
                         </div>
@@ -393,26 +398,26 @@ const Products: React.FC = () => {
                         </IonButton>
                       </div>
                       <div className="action-buttons">
-                        <IonButton
-                          fill="clear"
-                          color="primary"
-                          onClick={() => openEditModal(product)}
-                        >
-                          <IonIcon slot="icon-only" icon={createOutline} />
+                        <IonButton fill="clear" color="primary" onClick={() => openEditModal(product)}>
+                          <IonIcon
+                            slot="icon-only"
+                            icon={createOutline}
+                            style={{ fontSize: "20px", color: "#1B2E4B", display: "block" }}
+                          />
                         </IonButton>
-                        <IonButton
-                          fill="clear"
-                          color="danger"
-                          onClick={() => handleDelete(product.id)}
-                        >
-                          <IonIcon slot="icon-only" icon={trashOutline} />
+                        <IonButton fill="clear" color="danger" onClick={() => handleDelete(product.id)}>
+                          <IonIcon
+                            slot="icon-only"
+                            icon={trashOutline}
+                            style={{ fontSize: "20px", color: "#E74C3C", display: "block" }}
+                          />
                         </IonButton>
                       </div>
                     </div>
                   </IonCardContent>
                 </IonCard>
               ) : (
-                // List View - Items
+                // List View
                 <IonCard key={product.id} className="product-list-item">
                   <IonCardContent>
                     <div className="product-list-content">
@@ -447,19 +452,19 @@ const Products: React.FC = () => {
                             +
                           </IonButton>
                         </div>
-                        <IonButton
-                          fill="clear"
-                          color="primary"
-                          onClick={() => openEditModal(product)}
-                        >
-                          <IonIcon slot="icon-only" icon={createOutline} />
+                        <IonButton fill="clear" color="primary" onClick={() => openEditModal(product)}>
+                          <IonIcon
+                            slot="icon-only"
+                            icon={createOutline}
+                            style={{ fontSize: "20px", color: "#1B2E4B", display: "block" }}
+                          />
                         </IonButton>
-                        <IonButton
-                          fill="clear"
-                          color="danger"
-                          onClick={() => handleDelete(product.id)}
-                        >
-                          <IonIcon slot="icon-only" icon={trashOutline} />
+                        <IonButton fill="clear" color="danger" onClick={() => handleDelete(product.id)}>
+                          <IonIcon
+                            slot="icon-only"
+                            icon={trashOutline}
+                            style={{ fontSize: "20px", color: "#E74C3C", display: "block" }}
+                          />
                         </IonButton>
                       </div>
                     </div>
@@ -474,12 +479,13 @@ const Products: React.FC = () => {
         <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
           <IonHeader>
             <IonToolbar>
-              <IonTitle>
-                {isEditing ? "Edit Product" : "Add Product"}
-              </IonTitle>
+              <IonTitle>{isEditing ? "Edit Product" : "Add Product"}</IonTitle>
               <IonButtons slot="end">
                 <IonButton onClick={() => setShowModal(false)}>
-                  <IonIcon icon={closeOutline} />
+                  <IonIcon
+                    icon={closeOutline}
+                    style={{ fontSize: "24px", color: "#ffffff", display: "block" }}
+                  />
                 </IonButton>
               </IonButtons>
             </IonToolbar>
@@ -490,9 +496,7 @@ const Products: React.FC = () => {
                 <IonLabel position="stacked">Product Name *</IonLabel>
                 <IonInput
                   value={formData.name}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, name: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, name: e.detail.value! })}
                   placeholder="Enter product name"
                 />
               </IonItem>
@@ -501,18 +505,12 @@ const Products: React.FC = () => {
                 <IonLabel position="stacked">Category *</IonLabel>
                 <IonSelect
                   value={formData.category}
-                  onIonChange={(e) =>
-                    setFormData({ ...formData, category: e.detail.value })
-                  }
+                  onIonChange={(e) => setFormData({ ...formData, category: e.detail.value })}
                   placeholder="Select category"
                 >
-                  <IonSelectOption value="Supplements">
-                    Supplements
-                  </IonSelectOption>
+                  <IonSelectOption value="Supplements">Supplements</IonSelectOption>
                   <IonSelectOption value="Apparel">Apparel</IonSelectOption>
-                  <IonSelectOption value="Accessories">
-                    Accessories
-                  </IonSelectOption>
+                  <IonSelectOption value="Accessories">Accessories</IonSelectOption>
                   <IonSelectOption value="Equipment">Equipment</IonSelectOption>
                 </IonSelect>
               </IonItem>
@@ -522,9 +520,7 @@ const Products: React.FC = () => {
                 <IonInput
                   type="number"
                   value={formData.price}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, price: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, price: e.detail.value! })}
                   placeholder="0.00"
                   step="0.01"
                   min="0"
@@ -536,9 +532,7 @@ const Products: React.FC = () => {
                 <IonInput
                   type="number"
                   value={formData.stock}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, stock: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, stock: e.detail.value! })}
                   placeholder="0"
                   min="0"
                 />
@@ -548,9 +542,7 @@ const Products: React.FC = () => {
                 <IonLabel position="stacked">SKU</IonLabel>
                 <IonInput
                   value={formData.sku}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, sku: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, sku: e.detail.value! })}
                   placeholder="e.g., SUP-001"
                 />
               </IonItem>
@@ -559,9 +551,7 @@ const Products: React.FC = () => {
                 <IonLabel position="stacked">Description</IonLabel>
                 <IonInput
                   value={formData.description}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, description: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, description: e.detail.value! })}
                   placeholder="Product description"
                 />
               </IonItem>

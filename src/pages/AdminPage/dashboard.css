@@ -30,6 +30,7 @@
   gap: 16px;
 }
 
+/* Icon Wrapper — background only, color is set inline on IonIcon */
 .stat-icon-wrapper {
   width: 60px;
   height: 60px;
@@ -42,28 +43,21 @@
 
 .stat-icon-wrapper.primary {
   background: rgba(27, 46, 75, 0.1);
-  color: #1B2E4B;
 }
 
 .stat-icon-wrapper.success {
   background: rgba(46, 204, 113, 0.1);
-  color: #2ECC71;
 }
 
 .stat-icon-wrapper.warning {
   background: rgba(243, 156, 18, 0.1);
-  color: #F39C12;
 }
 
 .stat-icon-wrapper.revenue {
   background: rgba(46, 204, 113, 0.1);
-  color: #2ECC71;
 }
 
-.stat-icon {
-  font-size: 32px;
-}
-
+/* Stat Content */
 .stat-content {
   flex: 1;
 }
@@ -72,7 +66,7 @@
   font-size: 32px;
   font-weight: 700;
   margin: 0 0 4px 0;
-  color: #1B2E4B;
+  color: #1b2e4b;
   line-height: 1;
 }
 
@@ -98,7 +92,7 @@
 .charts-card ion-card-title {
   font-size: 20px;
   font-weight: 600;
-  color: #1B2E4B;
+  color: #1b2e4b;
 }
 
 .charts-card ion-card-content {
@@ -108,15 +102,13 @@
 .charts-placeholder {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, rgba(27, 46, 75, 0.02) 0%, rgba(46, 204, 113, 0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(27, 46, 75, 0.02) 0%,
+    rgba(46, 204, 113, 0.02) 100%
+  );
   border-radius: 8px;
   border: 2px dashed #dee2e6;
-}
-
-.chart-placeholder-icon {
-  font-size: 64px;
-  color: #adb5bd;
-  margin-bottom: 16px;
 }
 
 .chart-placeholder-text {
@@ -148,10 +140,6 @@
     height: 50px;
   }
 
-  .stat-icon {
-    font-size: 28px;
-  }
-
   .stat-value {
     font-size: 24px;
   }
@@ -162,10 +150,6 @@
 
   .charts-placeholder {
     padding: 40px 16px;
-  }
-
-  .chart-placeholder-icon {
-    font-size: 48px;
   }
 }
 

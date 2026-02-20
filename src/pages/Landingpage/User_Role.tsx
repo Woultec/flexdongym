@@ -2,21 +2,17 @@ import React, { useState } from 'react';
 import {
   IonPage,
   IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonButton,
   IonIcon,
   IonModal,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonButtons,
+  IonButton,
   IonList,
   IonToast,
 } from '@ionic/react';
-import { shieldCheckmarkOutline, personOutline, close } from 'ionicons/icons';
+import { shieldCheckmarkOutline, personOutline, closeOutline, arrowForwardOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Username from '../../components/Reusable/Username';
@@ -34,6 +30,7 @@ const UserRole: React.FC = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [hoveredRole, setHoveredRole] = useState<'admin' | 'employee' | null>(null);
 
   const handleRoleSelect = (role: 'admin' | 'employee') => {
     setSelectedRole(role);
@@ -46,17 +43,14 @@ const UserRole: React.FC = () => {
       setShowToast(true);
       return;
     }
-
     setLoading(true);
     const success = await login(username, password, selectedRole);
     setLoading(false);
-
     if (success) {
       setShowModal(false);
-      const path = selectedRole === 'admin' ? '/admin/dashboard' : '/employee/dashboard';
-      history.push(path);
+      history.push(selectedRole === 'admin' ? '/admin/dashboard' : '/employee/dashboard');
     } else {
-      setToastMessage('Login failed. Please try again.');
+      setToastMessage('Invalid credentials. Please try again.');
       setShowToast(true);
     }
   };
@@ -69,70 +63,130 @@ const UserRole: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent className="role-selection-page" fullscreen>
-        <div className="role-container">
-          <div className="role-header">
-            <h1>Select Your Role</h1>
-            <p>Choose your access level to continue</p>
+      <IonContent className="ur-page" fullscreen>
+
+        {/* ── Full screen split layout ── */}
+        <div className="ur-split">
+
+          {/* ── ADMIN panel ── */}
+          <button
+            className={`ur-panel ur-admin ${hoveredRole === 'admin' ? 'is-hovered' : ''} ${hoveredRole === 'employee' ? 'is-dimmed' : ''}`}
+            onClick={() => handleRoleSelect('admin')}
+            onMouseEnter={() => setHoveredRole('admin')}
+            onMouseLeave={() => setHoveredRole(null)}
+          >
+            <div className="ur-panel-noise" />
+            <div className="ur-panel-inner">
+              <div className="ur-icon-ring admin-ring">
+                <IonIcon
+                  icon={shieldCheckmarkOutline}
+                  style={{ fontSize: '36px', color: '#ffffff', display: 'block' }}
+                />
+              </div>
+              <div className="ur-label-group">
+                <span className="ur-role-tag">ACCESS LEVEL 01</span>
+                <h2 className="ur-role-name">Admin</h2>
+                <p className="ur-role-desc">Full system control</p>
+              </div>
+              <div className="ur-arrow">
+                <IonIcon
+                  icon={arrowForwardOutline}
+                  style={{ fontSize: '22px', color: 'rgba(255,255,255,0.5)', display: 'block' }}
+                />
+              </div>
+            </div>
+            <div className="ur-panel-glow admin-glow" />
+          </button>
+
+          {/* ── Divider ── */}
+          <div className="ur-divider">
+            <div className="ur-divider-line" />
+            <div className="ur-divider-badge">
+              <span>OR</span>
+            </div>
+            <div className="ur-divider-line" />
           </div>
 
-          <div className="role-cards">
-            <IonCard className="role-card admin-card" button onClick={() => handleRoleSelect('admin')}>
-              <IonCardHeader>
-                <div className="role-icon-wrapper admin-icon">
-                  <IonIcon icon={shieldCheckmarkOutline} />
-                </div>
-                <IonCardTitle>Administrator</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <p>Full system access with management capabilities</p>
-                <ul className="role-features">
-                  <li>Manage members & employees</li>
-                  <li>View analytics & reports</li>
-                  <li>Manage inventory & pricing</li>
-                  <li>System configuration</li>
-                </ul>
-              </IonCardContent>
-            </IonCard>
+          {/* ── EMPLOYEE panel ── */}
+          <button
+            className={`ur-panel ur-employee ${hoveredRole === 'employee' ? 'is-hovered' : ''} ${hoveredRole === 'admin' ? 'is-dimmed' : ''}`}
+            onClick={() => handleRoleSelect('employee')}
+            onMouseEnter={() => setHoveredRole('employee')}
+            onMouseLeave={() => setHoveredRole(null)}
+          >
+            <div className="ur-panel-noise" />
+            <div className="ur-panel-inner">
+              <div className="ur-icon-ring employee-ring">
+                <IonIcon
+                  icon={personOutline}
+                  style={{ fontSize: '36px', color: '#ffffff', display: 'block' }}
+                />
+              </div>
+              <div className="ur-label-group">
+                <span className="ur-role-tag">ACCESS LEVEL 02</span>
+                <h2 className="ur-role-name">Employee</h2>
+                <p className="ur-role-desc">Daily operations</p>
+              </div>
+              <div className="ur-arrow">
+                <IonIcon
+                  icon={arrowForwardOutline}
+                  style={{ fontSize: '22px', color: 'rgba(255,255,255,0.5)', display: 'block' }}
+                />
+              </div>
+            </div>
+            <div className="ur-panel-glow employee-glow" />
+          </button>
 
-            <IonCard className="role-card employee-card" button onClick={() => handleRoleSelect('employee')}>
-              <IonCardHeader>
-                <div className="role-icon-wrapper employee-icon">
-                  <IonIcon icon={personOutline} />
-                </div>
-                <IonCardTitle>Employee</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <p>Daily operations and member services</p>
-                <ul className="role-features">
-                  <li>Member check-in & registration</li>
-                  <li>Point of Sale (POS)</li>
-                  <li>QR code scanning</li>
-                  <li>View member details</li>
-                </ul>
-              </IonCardContent>
-            </IonCard>
-          </div>
         </div>
 
-        {/* Login Modal */}
-        <IonModal isOpen={showModal} onDidDismiss={handleCloseModal}>
+        {/* ── Branding footer ── */}
+        <div className="ur-brand">
+          <span className="ur-brand-name">FLEXDON</span>
+          <span className="ur-brand-dot">·</span>
+          <span className="ur-brand-sub">Gym Management</span>
+        </div>
+
+        {/* ── Login Modal ── */}
+        <IonModal
+          isOpen={showModal}
+          onDidDismiss={handleCloseModal}
+          className="ur-modal"
+        >
           <IonHeader>
-            <IonToolbar color="primary">
-              <IonTitle>{selectedRole === 'admin' ? 'Admin' : 'Employee'} Login</IonTitle>
+            <IonToolbar className={`ur-modal-toolbar ${selectedRole === 'admin' ? 'toolbar-admin' : 'toolbar-employee'}`}>
+              <IonTitle className="ur-modal-title">
+                {selectedRole === 'admin' ? 'Admin Login' : 'Employee Login'}
+              </IonTitle>
               <IonButtons slot="end">
                 <IonButton onClick={handleCloseModal}>
-                  <IonIcon icon={close} />
+                  <IonIcon
+                    icon={closeOutline}
+                    style={{ fontSize: '22px', color: '#ffffff', display: 'block' }}
+                  />
                 </IonButton>
               </IonButtons>
             </IonToolbar>
           </IonHeader>
-          <IonContent className="login-modal-content">
-            <div className="login-form">
-              <IonList>
+
+          <IonContent className="ur-modal-content">
+            <div className="ur-login-wrap">
+
+              {/* Role indicator pill */}
+              <div className={`ur-role-pill ${selectedRole === 'admin' ? 'pill-admin' : 'pill-employee'}`}>
+                <IonIcon
+                  icon={selectedRole === 'admin' ? shieldCheckmarkOutline : personOutline}
+                  style={{ fontSize: '16px', color: '#ffffff', display: 'block' }}
+                />
+                <span>{selectedRole === 'admin' ? 'Administrator' : 'Employee'}</span>
+              </div>
+
+              <h3 className="ur-login-heading">Welcome back</h3>
+              <p className="ur-login-sub">Sign in to continue to your dashboard</p>
+
+              <IonList className="ur-login-list">
                 <Username
                   value={username}
-                  onChange={setUsername} 
+                  onChange={setUsername}
                   placeholder="Enter your username"
                   required
                 />
@@ -143,14 +197,18 @@ const UserRole: React.FC = () => {
                   required
                 />
               </IonList>
-              <div className="login-actions">
+
+              <div className="ur-login-actions">
                 <Button
-                  text={loading ? 'Logging in...' : 'Login'}
+                  text={loading ? 'Signing in…' : 'Sign In'}
                   onClick={handleLogin}
                   expand="block"
                   size="large"
                   disabled={loading}
                 />
+                <button className="ur-cancel-link" onClick={handleCloseModal}>
+                  Cancel
+                </button>
               </div>
             </div>
           </IonContent>
@@ -164,6 +222,7 @@ const UserRole: React.FC = () => {
           color="danger"
           position="top"
         />
+
       </IonContent>
     </IonPage>
   );

@@ -386,6 +386,7 @@ const Customers: React.FC = () => {
                     <IonSelectOption value="monthly">Monthly</IonSelectOption>
                     <IonSelectOption value="quarterly">Quarterly</IonSelectOption>
                     <IonSelectOption value="annual">Annual</IonSelectOption>
+                    <IonSelectOption value="weekly">Weekly</IonSelectOption>
                   </IonSelect>
                 </div>
 

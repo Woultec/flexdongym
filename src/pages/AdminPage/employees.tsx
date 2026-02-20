@@ -30,6 +30,7 @@ import {
   closeOutline,
   searchOutline,
   peopleOutline,
+  banOutline,
 } from "ionicons/icons";
 import AdminHeader from "../../components/admincomponents/Layout/header";
 import "./common.css";
@@ -99,7 +100,6 @@ const Employees: React.FC = () => {
   const [currentEmployee, setCurrentEmployee] = useState<Employee | null>(null);
   const [searchText, setSearchText] = useState("");
 
-  // Form state
   const [formData, setFormData] = useState({
     name: "",
     role: "",
@@ -111,14 +111,7 @@ const Employees: React.FC = () => {
 
   const openAddModal = () => {
     setIsEditing(false);
-    setFormData({
-      name: "",
-      role: "",
-      email: "",
-      status: "active",
-      phone: "",
-      hireDate: "",
-    });
+    setFormData({ name: "", role: "", email: "", status: "active", phone: "", hireDate: "" });
     setShowModal(true);
   };
 
@@ -143,16 +136,12 @@ const Employees: React.FC = () => {
     }
 
     if (isEditing && currentEmployee) {
-      // Update existing employee
       setEmployees(
         employees.map((emp) =>
-          emp.id === currentEmployee.id
-            ? { ...currentEmployee, ...formData }
-            : emp
+          emp.id === currentEmployee.id ? { ...currentEmployee, ...formData } : emp
         )
       );
     } else {
-      // Add new employee
       const newEmployee: Employee = {
         id: Math.max(...employees.map((e) => e.id)) + 1,
         ...formData,
@@ -172,14 +161,10 @@ const Employees: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "active":
-        return "success";
-      case "inactive":
-        return "danger";
-      case "on-leave":
-        return "warning";
-      default:
-        return "medium";
+      case "active": return "success";
+      case "inactive": return "danger";
+      case "on-leave": return "warning";
+      default: return "medium";
     }
   };
 
@@ -208,28 +193,41 @@ const Employees: React.FC = () => {
                 </IonText>
               </div>
               <IonButton onClick={openAddModal} color="primary">
-                <IonIcon slot="start" icon={addOutline} />
+                <IonIcon
+                  slot="start"
+                  icon={addOutline}
+                  style={{ fontSize: "20px", color: "#ffffff", display: "block" }}
+                />
                 Add Employee
               </IonButton>
             </div>
           </IonCardHeader>
         </IonCard>
 
-        {/* Stats Cards */}
+        {/* Stats Cards — Total, Active, On Leave, Inactive */}
         <div className="employee-stats">
+          {/* Total Staff */}
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon">
-                <IonIcon icon={peopleOutline} />
+              <div className="stat-icon-wrapper default">
+                <IonIcon
+                  icon={peopleOutline}
+                  style={{ fontSize: "28px", color: "#1B2E4B", display: "block" }}
+                />
               </div>
               <div className="stat-value">{employees.length}</div>
               <div className="stat-label">Total Staff</div>
             </IonCardContent>
           </IonCard>
+
+          {/* Active */}
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon success">
-                <IonIcon icon={peopleOutline} />
+              <div className="stat-icon-wrapper success">
+                <IonIcon
+                  icon={peopleOutline}
+                  style={{ fontSize: "28px", color: "#2ECC71", display: "block" }}
+                />
               </div>
               <div className="stat-value">
                 {employees.filter((e) => e.status === "active").length}
@@ -237,15 +235,36 @@ const Employees: React.FC = () => {
               <div className="stat-label">Active</div>
             </IonCardContent>
           </IonCard>
+
+          {/* On Leave */}
           <IonCard className="stat-card">
             <IonCardContent>
-              <div className="stat-icon warning">
-                <IonIcon icon={peopleOutline} />
+              <div className="stat-icon-wrapper warning">
+                <IonIcon
+                  icon={peopleOutline}
+                  style={{ fontSize: "28px", color: "#F39C12", display: "block" }}
+                />
               </div>
               <div className="stat-value">
                 {employees.filter((e) => e.status === "on-leave").length}
               </div>
               <div className="stat-label">On Leave</div>
+            </IonCardContent>
+          </IonCard>
+
+          {/* Inactive */}
+          <IonCard className="stat-card">
+            <IonCardContent>
+              <div className="stat-icon-wrapper danger">
+                <IonIcon
+                  icon={banOutline}
+                  style={{ fontSize: "28px", color: "#E74C3C", display: "block" }}
+                />
+              </div>
+              <div className="stat-value">
+                {employees.filter((e) => e.status === "inactive").length}
+              </div>
+              <div className="stat-label">Inactive</div>
             </IonCardContent>
           </IonCard>
         </div>
@@ -263,7 +282,10 @@ const Employees: React.FC = () => {
           <IonList className="employee-list">
             {filteredEmployees.length === 0 ? (
               <div className="empty-state">
-                <IonIcon icon={searchOutline} className="empty-state-icon" />
+                <IonIcon
+                  icon={searchOutline}
+                  style={{ fontSize: "64px", color: "#adb5bd", display: "block", margin: "0 auto 16px" }}
+                />
                 <div className="empty-state-title">No employees found</div>
                 <div className="empty-state-text">
                   {searchText
@@ -294,19 +316,19 @@ const Employees: React.FC = () => {
                     </div>
                   </IonLabel>
                   <div className="employee-actions">
-                    <IonButton
-                      fill="clear"
-                      color="primary"
-                      onClick={() => openEditModal(employee)}
-                    >
-                      <IonIcon slot="icon-only" icon={createOutline} />
+                    <IonButton fill="clear" color="primary" onClick={() => openEditModal(employee)}>
+                      <IonIcon
+                        slot="icon-only"
+                        icon={createOutline}
+                        style={{ fontSize: "20px", color: "#1B2E4B", display: "block" }}
+                      />
                     </IonButton>
-                    <IonButton
-                      fill="clear"
-                      color="danger"
-                      onClick={() => handleDelete(employee.id)}
-                    >
-                      <IonIcon slot="icon-only" icon={trashOutline} />
+                    <IonButton fill="clear" color="danger" onClick={() => handleDelete(employee.id)}>
+                      <IonIcon
+                        slot="icon-only"
+                        icon={trashOutline}
+                        style={{ fontSize: "20px", color: "#E74C3C", display: "block" }}
+                      />
                     </IonButton>
                   </div>
                 </IonItem>
@@ -319,12 +341,13 @@ const Employees: React.FC = () => {
         <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
           <IonHeader>
             <IonToolbar>
-              <IonTitle>
-                {isEditing ? "Edit Employee" : "Add Employee"}
-              </IonTitle>
+              <IonTitle>{isEditing ? "Edit Employee" : "Add Employee"}</IonTitle>
               <IonButtons slot="end">
                 <IonButton onClick={() => setShowModal(false)}>
-                  <IonIcon icon={closeOutline} />
+                  <IonIcon
+                    icon={closeOutline}
+                    style={{ fontSize: "24px", color: "#ffffff", display: "block" }}
+                  />
                 </IonButton>
               </IonButtons>
             </IonToolbar>
@@ -335,9 +358,7 @@ const Employees: React.FC = () => {
                 <IonLabel position="stacked">Name *</IonLabel>
                 <IonInput
                   value={formData.name}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, name: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, name: e.detail.value! })}
                   placeholder="Enter employee name"
                 />
               </IonItem>
@@ -346,19 +367,13 @@ const Employees: React.FC = () => {
                 <IonLabel position="stacked">Role *</IonLabel>
                 <IonSelect
                   value={formData.role}
-                  onIonChange={(e) =>
-                    setFormData({ ...formData, role: e.detail.value })
-                  }
+                  onIonChange={(e) => setFormData({ ...formData, role: e.detail.value })}
                   placeholder="Select role"
                 >
                   <IonSelectOption value="Manager">Manager</IonSelectOption>
                   <IonSelectOption value="Trainer">Trainer</IonSelectOption>
-                  <IonSelectOption value="Receptionist">
-                    Receptionist
-                  </IonSelectOption>
-                  <IonSelectOption value="Maintenance">
-                    Maintenance
-                  </IonSelectOption>
+                  <IonSelectOption value="Receptionist">Receptionist</IonSelectOption>
+                  <IonSelectOption value="Maintenance">Maintenance</IonSelectOption>
                   <IonSelectOption value="Cleaner">Cleaner</IonSelectOption>
                 </IonSelect>
               </IonItem>
@@ -368,9 +383,7 @@ const Employees: React.FC = () => {
                 <IonInput
                   type="email"
                   value={formData.email}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, email: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, email: e.detail.value! })}
                   placeholder="employee@flexdongym.com"
                 />
               </IonItem>
@@ -380,9 +393,7 @@ const Employees: React.FC = () => {
                 <IonInput
                   type="tel"
                   value={formData.phone}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, phone: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, phone: e.detail.value! })}
                   placeholder="+1 234-567-8900"
                 />
               </IonItem>
@@ -391,9 +402,7 @@ const Employees: React.FC = () => {
                 <IonLabel position="stacked">Status *</IonLabel>
                 <IonSelect
                   value={formData.status}
-                  onIonChange={(e) =>
-                    setFormData({ ...formData, status: e.detail.value })
-                  }
+                  onIonChange={(e) => setFormData({ ...formData, status: e.detail.value })}
                 >
                   <IonSelectOption value="active">Active</IonSelectOption>
                   <IonSelectOption value="inactive">Inactive</IonSelectOption>
@@ -406,19 +415,12 @@ const Employees: React.FC = () => {
                 <IonInput
                   type="date"
                   value={formData.hireDate}
-                  onIonInput={(e) =>
-                    setFormData({ ...formData, hireDate: e.detail.value! })
-                  }
+                  onIonInput={(e) => setFormData({ ...formData, hireDate: e.detail.value! })}
                 />
               </IonItem>
 
               <div className="modal-actions">
-                <IonButton
-                  expand="block"
-                  color="medium"
-                  fill="outline"
-                  onClick={() => setShowModal(false)}
-                >
+                <IonButton expand="block" color="medium" fill="outline" onClick={() => setShowModal(false)}>
                   Cancel
                 </IonButton>
                 <IonButton expand="block" color="primary" onClick={handleSave}>

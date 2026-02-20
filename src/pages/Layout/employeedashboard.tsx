@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonRouterOutlet, IonTabs } from '@ionic/react';
+import { IonRouterOutlet } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
 import EmployeeNavbar from '../../components/EmployeeComponents/Layout/Navbar';
 import EmployeeDashboard from '../EmployeePage/EmployeeDashboard';
@@ -14,7 +14,8 @@ import './employeedashboard.css';
 
 const EmployeeDashboardLayout: React.FC = () => {
   return (
-    <IonTabs>
+    <>
+      <EmployeeNavbar />
       <IonRouterOutlet id="employee-content">
         <Route path="/employee/dashboard" exact component={EmployeeDashboard} />
         <Route path="/employee/members" exact component={Member} />
@@ -28,8 +29,7 @@ const EmployeeDashboardLayout: React.FC = () => {
           <Redirect to="/employee/dashboard" />
         </Route>
       </IonRouterOutlet>
-      <EmployeeNavbar />
-    </IonTabs>
+    </>
   );
 };
 

@@ -11,23 +11,22 @@ import {
   IonCardContent,
   IonIcon,
 } from "@ionic/react";
-import { 
-  peopleOutline, 
-  checkmarkCircleOutline, 
-  todayOutline, 
+import {
+  peopleOutline,
+  checkmarkCircleOutline,
+  todayOutline,
   cashOutline,
-  statsChartOutline 
+  statsChartOutline,
 } from "ionicons/icons";
 import AdminHeader from "../../components/admincomponents/Layout/header";
 import "./dashboard.css";
 
 const Dashboard: React.FC = () => {
-  // Mock data - replace with actual data from your backend
   const stats = {
     totalMembers: 245,
     activeMembers: 198,
     todayCheckIns: 87,
-    revenue: 12450.00,
+    revenue: 12450.0,
   };
 
   return (
@@ -38,11 +37,19 @@ const Dashboard: React.FC = () => {
           {/* Stats Cards */}
           <IonGrid>
             <IonRow>
+              {/* Total Members */}
               <IonCol size="12" sizeMd="6" sizeLg="3">
-                <IonCard className="stat-card stat-card-primary">
+                <IonCard className="stat-card">
                   <IonCardContent>
                     <div className="stat-icon-wrapper primary">
-                      <IonIcon icon={peopleOutline} className="stat-icon" />
+                      <IonIcon
+                        icon={peopleOutline}
+                        style={{
+                          fontSize: "32px",
+                          color: "#1B2E4B",
+                          display: "block",
+                        }}
+                      />
                     </div>
                     <div className="stat-content">
                       <h3 className="stat-value">{stats.totalMembers}</h3>
@@ -52,11 +59,19 @@ const Dashboard: React.FC = () => {
                 </IonCard>
               </IonCol>
 
+              {/* Active Members */}
               <IonCol size="12" sizeMd="6" sizeLg="3">
-                <IonCard className="stat-card stat-card-success">
+                <IonCard className="stat-card">
                   <IonCardContent>
                     <div className="stat-icon-wrapper success">
-                      <IonIcon icon={checkmarkCircleOutline} className="stat-icon" />
+                      <IonIcon
+                        icon={checkmarkCircleOutline}
+                        style={{
+                          fontSize: "32px",
+                          color: "#2ECC71",
+                          display: "block",
+                        }}
+                      />
                     </div>
                     <div className="stat-content">
                       <h3 className="stat-value">{stats.activeMembers}</h3>
@@ -66,11 +81,19 @@ const Dashboard: React.FC = () => {
                 </IonCard>
               </IonCol>
 
+              {/* Today's Check-ins */}
               <IonCol size="12" sizeMd="6" sizeLg="3">
-                <IonCard className="stat-card stat-card-warning">
+                <IonCard className="stat-card">
                   <IonCardContent>
                     <div className="stat-icon-wrapper warning">
-                      <IonIcon icon={todayOutline} className="stat-icon" />
+                      <IonIcon
+                        icon={todayOutline}
+                        style={{
+                          fontSize: "32px",
+                          color: "#F39C12",
+                          display: "block",
+                        }}
+                      />
                     </div>
                     <div className="stat-content">
                       <h3 className="stat-value">{stats.todayCheckIns}</h3>
@@ -80,14 +103,24 @@ const Dashboard: React.FC = () => {
                 </IonCard>
               </IonCol>
 
+              {/* Monthly Revenue */}
               <IonCol size="12" sizeMd="6" sizeLg="3">
-                <IonCard className="stat-card stat-card-revenue">
+                <IonCard className="stat-card">
                   <IonCardContent>
                     <div className="stat-icon-wrapper revenue">
-                      <IonIcon icon={cashOutline} className="stat-icon" />
+                      <IonIcon
+                        icon={cashOutline}
+                        style={{
+                          fontSize: "32px",
+                          color: "#2ECC71",
+                          display: "block",
+                        }}
+                      />
                     </div>
                     <div className="stat-content">
-                      <h3 className="stat-value">${stats.revenue.toLocaleString()}</h3>
+                      <h3 className="stat-value">
+                        ${stats.revenue.toLocaleString()}
+                      </h3>
                       <p className="stat-label">Monthly Revenue</p>
                     </div>
                   </IonCardContent>
@@ -103,9 +136,21 @@ const Dashboard: React.FC = () => {
             </IonCardHeader>
             <IonCardContent>
               <div className="charts-placeholder">
-                <IonIcon icon={statsChartOutline} className="chart-placeholder-icon" />
-                <p className="chart-placeholder-text">Charts and analytics will be displayed here</p>
-                <p className="chart-placeholder-subtext">Membership trends, revenue analytics, and attendance patterns</p>
+                <IonIcon
+                  icon={statsChartOutline}
+                  style={{
+                    fontSize: "64px",
+                    color: "#adb5bd",
+                    display: "block",
+                    margin: "0 auto 16px auto",
+                  }}
+                />
+                <p className="chart-placeholder-text">
+                  Charts and analytics will be displayed here
+                </p>
+                <p className="chart-placeholder-subtext">
+                  Membership trends, revenue analytics, and attendance patterns
+                </p>
               </div>
             </IonCardContent>
           </IonCard>

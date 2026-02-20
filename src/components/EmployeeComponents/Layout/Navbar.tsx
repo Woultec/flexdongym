@@ -1,11 +1,21 @@
 import React from 'react';
-import { IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import {
+  IonMenu,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonIcon,
+  IonLabel,
+  IonMenuToggle,
+} from '@ionic/react';
 import {
   speedometerOutline,
   peopleOutline,
   qrCodeOutline,
   cartOutline,
-  personAddOutline,
   logOutOutline,
 } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
@@ -21,33 +31,48 @@ const EmployeeNavbar: React.FC = () => {
     window.location.href = '/';
   };
 
+  const navigateTo = (path: string) => {
+    history.push(path);
+  };
+
   return (
-    <IonTabBar slot="bottom" className="employee-tabbar">
-      <IonTabButton tab="dashboard" href="/employee/dashboard">
-        <IonIcon icon={speedometerOutline} />
-        <IonLabel>Dashboard</IonLabel>
-      </IonTabButton>
+    <IonMenu contentId="employee-content" type="overlay" className="employee-menu">
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>Employee Menu</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonList>
+          <IonMenuToggle autoHide={false}>
+            <IonItem button onClick={() => navigateTo('/employee/dashboard')}>
+              <IonIcon icon={speedometerOutline} slot="start" />
+              <IonLabel>Dashboard</IonLabel>
+            </IonItem>
 
-      <IonTabButton tab="members" onClick={() => history.push("/employee/members")}>
-        <IonIcon icon={peopleOutline} />
-        <IonLabel>Members</IonLabel>
-      </IonTabButton>
+            <IonItem button onClick={() => navigateTo('/employee/members')}>
+              <IonIcon icon={peopleOutline} slot="start" />
+              <IonLabel>Members</IonLabel>
+            </IonItem>
 
-      <IonTabButton tab="qr-scanner" href="/employee/qr-scanner" className="qr-tab-button">
-        <IonIcon icon={qrCodeOutline} />
-        <IonLabel>Scan QR</IonLabel>
-      </IonTabButton>
+            <IonItem button onClick={() => navigateTo('/employee/qr-scanner')}>
+              <IonIcon icon={qrCodeOutline} slot="start" />
+              <IonLabel>Scan QR</IonLabel>
+            </IonItem>
 
-      <IonTabButton tab="pos" href="/employee/pos">
-        <IonIcon icon={cartOutline} />
-        <IonLabel>POS</IonLabel>
-      </IonTabButton>
+            <IonItem button onClick={() => navigateTo('/employee/pos')}>
+              <IonIcon icon={cartOutline} slot="start" />
+              <IonLabel>POS</IonLabel>
+            </IonItem>
 
-      <IonTabButton tab="logout" onClick={handleLogout}>
-        <IonIcon icon={logOutOutline} />
-        <IonLabel>Logout</IonLabel>
-      </IonTabButton>
-    </IonTabBar>
+            <IonItem button onClick={handleLogout}>
+              <IonIcon icon={logOutOutline} slot="start" />
+              <IonLabel>Logout</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+        </IonList>
+      </IonContent>
+    </IonMenu>
   );
 };
 
