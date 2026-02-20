@@ -24,13 +24,14 @@ const UserRole: React.FC = () => {
   const history = useHistory();
   const { login } = useAuth();
   const [showModal, setShowModal] = useState(false);
-  const [selectedRole, setSelectedRole] = useState<'admin' | 'employee' | null>(null);
+  type Role = 'admin' | 'employee';
+  const [selectedRole, setSelectedRole] = useState<Role | null>(null as Role | null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [hoveredRole, setHoveredRole] = useState<'admin' | 'employee' | null>(null);
+  const [hoveredRole, setHoveredRole] = useState<Role | null>(null as Role | null);
 
   const handleRoleSelect = (role: 'admin' | 'employee') => {
     setSelectedRole(role);

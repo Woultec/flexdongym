@@ -11,8 +11,8 @@
 /* ── Full-screen split container ── */
 .ur-split {
   display: flex;
-  flex-direction: column;    /* stacked on mobile */
-  height: calc(100vh - 52px); /* leave room for brand footer */
+  flex-direction: column;
+  height: calc(100vh - 52px);
   min-height: 500px;
 }
 
@@ -29,17 +29,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Admin: dark navy */
 .ur-admin {
   background: linear-gradient(160deg, #0f1c2e 0%, #1B2E4B 60%, #162540 100%);
 }
 
-/* Employee: deep slate-blue */
 .ur-employee {
   background: linear-gradient(160deg, #0d1a2d 0%, #1a3a5c 60%, #162540 100%);
 }
 
-/* Noise texture overlay for depth */
 .ur-panel-noise {
   position: absolute;
   inset: 0;
@@ -49,7 +46,6 @@
   pointer-events: none;
 }
 
-/* Glow blob */
 .ur-panel-glow {
   position: absolute;
   width: 300px;
@@ -66,14 +62,10 @@
 .employee-glow { background: radial-gradient(circle, rgba(46, 204, 113, 0.15) 0%, transparent 70%); }
 
 .ur-panel.is-hovered .ur-panel-glow { opacity: 1; }
-
-/* Hover / active states */
 .ur-panel.is-hovered { flex: 1.25; }
 .ur-panel.is-dimmed  { flex: 0.8; opacity: 0.7; }
-
 .ur-panel:active { opacity: 0.88; }
 
-/* Inner content */
 .ur-panel-inner {
   position: relative;
   z-index: 1;
@@ -84,7 +76,6 @@
   width: 100%;
 }
 
-/* Icon ring */
 .ur-icon-ring {
   width: 72px;
   height: 72px;
@@ -108,7 +99,6 @@
   box-shadow: 0 0 24px rgba(46, 204, 113, 0.1);
 }
 
-/* Text group */
 .ur-label-group {
   flex: 1;
   display: flex;
@@ -141,7 +131,6 @@
   font-weight: 400;
 }
 
-/* Arrow */
 .ur-arrow {
   flex-shrink: 0;
   transition: transform 0.25s ease;
@@ -151,7 +140,7 @@
   transform: translateX(5px);
 }
 
-/* ── Divider between panels ── */
+/* ── Divider ── */
 .ur-divider {
   display: flex;
   align-items: center;
@@ -218,7 +207,7 @@
 }
 
 /* ══════════════════════════════════════
-   Login Modal
+   Login Modal — Mobile (bottom sheet)
    ══════════════════════════════════════ */
 
 .ur-modal {
@@ -249,7 +238,6 @@
   margin: 0 auto;
 }
 
-/* Role pill */
 .ur-role-pill {
   display: inline-flex;
   align-items: center;
@@ -306,11 +294,10 @@
 .ur-cancel-link:active { opacity: 0.6; }
 
 /* ══════════════════════════════════════
-   Responsive — desktop / tablet
+   Login Modal — Desktop (centered card)
    ══════════════════════════════════════ */
 
 @media (min-width: 600px) {
-  /* Side-by-side on wider screens */
   .ur-split {
     flex-direction: row;
     height: calc(100vh - 52px);
@@ -342,32 +329,39 @@
     border-radius: 24px;
   }
 
-  .ur-role-name {
-    font-size: 40px;
-  }
+  .ur-role-name { font-size: 40px; }
+  .ur-role-desc { font-size: 15px; }
+  .ur-arrow { display: none; }
 
-  .ur-role-desc {
-    font-size: 15px;
-  }
-
-  .ur-arrow {
-    display: none; /* hidden on wide layout */
-  }
-
+  /*
+   * ROOT FIX:
+   * IonContent inside a modal requires the modal to have a concrete pixel
+   * height — not "auto". Without it, the shadow-DOM layout collapses the
+   * scrollable region to 0px even though the card shell is visible.
+   */
   .ur-modal {
     --border-radius: 20px;
     align-items: center;
-    --height: auto;
-    --max-height: 80vh;
+    --width: 480px;
+    --max-width: 90vw;
+    --height: 560px;
+    --max-height: 90vh;
+  }
+
+  .ur-modal::part(content) {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
   }
 }
 
 @media (min-width: 900px) {
-  .ur-role-name  { font-size: 48px; }
-  .ur-icon-ring  { width: 96px; height: 96px; }
+  .ur-role-name { font-size: 48px; }
+  .ur-icon-ring { width: 96px; height: 96px; }
 }
 
-/* Entry animation */
+/* ── Entry animations ── */
 .ur-admin {
   animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
